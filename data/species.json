@@ -1,0 +1,2623 @@
+{
+ "main": [
+  {
+   "name": "ANSERIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Anatidae",
+     "species": [
+      {
+       "id": "1",
+       "lt": "Gulbė nebylė",
+       "la": "Cygnus olor"
+      },
+      {
+       "id": "2",
+       "lt": "Mažoji gulbė",
+       "la": "Cygnus columbianus"
+      },
+      {
+       "id": "3",
+       "lt": "Gulbė giesmininkė",
+       "la": "Cygnus cygnus"
+      },
+      {
+       "id": "4",
+       "lt": "Paprastoji berniklė",
+       "la": "Branta bernicla"
+      },
+      {
+       "id": "5",
+       "lt": "Rudakaklė berniklė",
+       "la": "Branta ruficollis"
+      },
+      {
+       "id": "6",
+       "lt": "Kanadinė berniklė",
+       "la": "Branta canadensis"
+      },
+      {
+       "id": "7",
+       "lt": "Baltaskruostė berniklė",
+       "la": "Branta leucopsis"
+      },
+      {
+       "id": "8",
+       "lt": "Pilkoji žąsis",
+       "la": "Anser anser"
+      },
+      {
+       "id": "9",
+       "lt": "Mažoji žąsis",
+       "la": "Anser erythropus"
+      },
+      {
+       "id": "10",
+       "lt": "Baltakaktė žąsis",
+       "la": "Anser albifrons"
+      },
+      {
+       "id": "11",
+       "lt": "Tundrinė žąsis",
+       "la": "Anser serrirostris"
+      },
+      {
+       "id": "12",
+       "lt": "Trumpasnapė žąsis",
+       "la": "Anser brachyrhynchus"
+      },
+      {
+       "id": "13",
+       "lt": "Želmeninė žąsis",
+       "la": "Anser fabalis"
+      },
+      {
+       "id": "14",
+       "lt": "Mandarininė antis",
+       "la": "Aix galericulata"
+      },
+      {
+       "id": "15",
+       "lt": "Egiptinė žąsis",
+       "la": "Alopochen aegyptiaca"
+      },
+      {
+       "id": "16",
+       "lt": "Urvinė antis",
+       "la": "Tadorna tadorna"
+      },
+      {
+       "id": "17",
+       "lt": "Rudoji urvinė antis",
+       "la": "Tadorna ferruginea"
+      },
+      {
+       "id": "18",
+       "lt": "Ledinė antis",
+       "la": "Clangula hyemalis"
+      },
+      {
+       "id": "19",
+       "lt": "Sibirinė gaga",
+       "la": "Polysticta stelleri"
+      },
+      {
+       "id": "20",
+       "lt": "Skiauterėtoji gaga",
+       "la": "Somateria spectabilis"
+      },
+      {
+       "id": "21",
+       "lt": "Paprastoji gaga",
+       "la": "Somateria mollissima"
+      },
+      {
+       "id": "22",
+       "lt": "Islandinė antis",
+       "la": "Histrionicus histrionicus"
+      },
+      {
+       "id": "23",
+       "lt": "Juodoji antis",
+       "la": "Melanitta nigra"
+      },
+      {
+       "id": "24",
+       "lt": "Paprastoji nuodėgulė",
+       "la": "Melanitta fusca"
+      },
+      {
+       "id": "25",
+       "lt": "Sibirinė nuodėgulė",
+       "la": "Melanitta stejnegeri"
+      },
+      {
+       "id": "26",
+       "lt": "Klykuolė",
+       "la": "Bucephala clangula"
+      },
+      {
+       "id": "27",
+       "lt": "Mažasis dančiasnapis",
+       "la": "Mergellus albellus"
+      },
+      {
+       "id": "28",
+       "lt": "Vidutinis dančiasnapis",
+       "la": "Mergus serrator"
+      },
+      {
+       "id": "29",
+       "lt": "Didysis dančiasnapis",
+       "la": "Mergus merganser"
+      },
+      {
+       "id": "30",
+       "lt": "Šalminė antis",
+       "la": "Netta rufina"
+      },
+      {
+       "id": "31",
+       "lt": "Rudė",
+       "la": "Aythya nyroca"
+      },
+      {
+       "id": "32",
+       "lt": "Rudagalvė antis",
+       "la": "Aythya ferina"
+      },
+      {
+       "id": "33",
+       "lt": "Kuoduotoji antis",
+       "la": "Aythya fuligula"
+      },
+      {
+       "id": "34",
+       "lt": "Žiloji antis",
+       "la": "Aythya marila"
+      },
+      {
+       "id": "35",
+       "lt": "Dryžagalvė kryklė",
+       "la": "Spatula querquedula"
+      },
+      {
+       "id": "36",
+       "lt": "Šaukštasnapė antis",
+       "la": "Spatula clypeata"
+      },
+      {
+       "id": "37",
+       "lt": "Pilkoji antis",
+       "la": "Mareca strepera"
+      },
+      {
+       "id": "38",
+       "lt": "Eurazinė cyplė",
+       "la": "Mareca penelope"
+      },
+      {
+       "id": "39",
+       "lt": "Amerikinė cyplė",
+       "la": "Mareca americana"
+      },
+      {
+       "id": "40",
+       "lt": "Didžioji antis",
+       "la": "Anas platyrhynchos"
+      },
+      {
+       "id": "41",
+       "lt": "Smailiauodegė antis",
+       "la": "Anas acuta"
+      },
+      {
+       "id": "42",
+       "lt": "Rudagalvė kryklė",
+       "la": "Anas crecca"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "GALLIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Phasianidae",
+     "species": [
+      {
+       "id": "43",
+       "lt": "Jerubė",
+       "la": "Tetrastes bonasia"
+      },
+      {
+       "id": "44",
+       "lt": "Žvyrė",
+       "la": "Lagopus lagopus"
+      },
+      {
+       "id": "45",
+       "lt": "Kurtinys",
+       "la": "Tetrao urogallus"
+      },
+      {
+       "id": "46",
+       "lt": "Tetervinas",
+       "la": "Lyrurus tetrix"
+      },
+      {
+       "id": "47",
+       "lt": "Kurapka",
+       "la": "Perdix perdix"
+      },
+      {
+       "id": "48",
+       "lt": "Putpelė",
+       "la": "Coturnix coturnix"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "PHOENICOPTERIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Phoenicopteridae",
+     "species": [
+      {
+       "id": "49",
+       "lt": "Paprastasis flamingas",
+       "la": "Phoenicopterus roseus"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "PODICIPEDIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Podicipedidae",
+     "species": [
+      {
+       "id": "50",
+       "lt": "Mažasis kragas",
+       "la": "Tachybaptus ruficollis"
+      },
+      {
+       "id": "51",
+       "lt": "Raguotasis kragas",
+       "la": "Podiceps auritus"
+      },
+      {
+       "id": "52",
+       "lt": "Rudakaklis kragas",
+       "la": "Podiceps grisegena"
+      },
+      {
+       "id": "53",
+       "lt": "Ausuotasis kragas",
+       "la": "Podiceps cristatus"
+      },
+      {
+       "id": "54",
+       "lt": "Juodakaklis kragas",
+       "la": "Podiceps nigricollis"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "OTIDIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Otididae",
+     "species": [
+      {
+       "id": "55",
+       "lt": "Didysis einis",
+       "la": "Otis tarda"
+      },
+      {
+       "id": "56",
+       "lt": "Puošnusis einis",
+       "la": "Chlamydotis macqueenii"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "CUCULIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Cuculidae",
+     "species": [
+      {
+       "id": "57",
+       "lt": "Gegutė",
+       "la": "Cuculus canorus"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "PTEROCLIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Pteroclidae",
+     "species": [
+      {
+       "id": "58",
+       "lt": "Stepinė vištelė",
+       "la": "Syrrhaptes paradoxus"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "COLUMBIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Columbidae",
+     "species": [
+      {
+       "id": "59",
+       "lt": "Paprastasis purplelis",
+       "la": "Streptopelia turtur"
+      },
+      {
+       "id": "60",
+       "lt": "Pietinis purplelis",
+       "la": "Streptopelia decaocto"
+      },
+      {
+       "id": "61",
+       "lt": "Keršulis",
+       "la": "Columba palumbus"
+      },
+      {
+       "id": "62",
+       "lt": "Naminis karvelis",
+       "la": "Columba livia domestica"
+      },
+      {
+       "id": "63",
+       "lt": "Uldukas",
+       "la": "Columba oenas"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "GRUIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Gruidae",
+     "species": [
+      {
+       "id": "64",
+       "lt": "Kanadinė gervė",
+       "la": "Antigone canadensis"
+      },
+      {
+       "id": "65",
+       "lt": "Pilkoji gervė",
+       "la": "Grus grus"
+      }
+     ]
+    },
+    {
+     "name": "Rallidae",
+     "species": [
+      {
+       "id": "66",
+       "lt": "Ilgasnapė vištelė",
+       "la": "Rallus aquaticus"
+      },
+      {
+       "id": "67",
+       "lt": "Griežlė",
+       "la": "Crex crex"
+      },
+      {
+       "id": "68",
+       "lt": "Švygžda",
+       "la": "Porzana porzana"
+      },
+      {
+       "id": "69",
+       "lt": "Nendrinė vištelė",
+       "la": "Gallinula chloropus"
+      },
+      {
+       "id": "70",
+       "lt": "Laukys",
+       "la": "Fulica atra"
+      },
+      {
+       "id": "71",
+       "lt": "Plovinė vištelė",
+       "la": "Zapornia parva"
+      },
+      {
+       "id": "72",
+       "lt": "Mažoji švygžda",
+       "la": "Zapornia pusilla"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "CHARADRIIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Burhinidae",
+     "species": [
+      {
+       "id": "73",
+       "lt": "Storkulnis",
+       "la": "Burhinus oedicnemus"
+      }
+     ]
+    },
+    {
+     "name": "Recurvirostridae",
+     "species": [
+      {
+       "id": "74",
+       "lt": "Kojūkas",
+       "la": "Himantopus himantopus"
+      },
+      {
+       "id": "75",
+       "lt": "Avocetė",
+       "la": "Recurvirostra avosetta"
+      }
+     ]
+    },
+    {
+     "name": "Haematopodidae",
+     "species": [
+      {
+       "id": "76",
+       "lt": "Jūršarkė",
+       "la": "Haematopus ostralegus"
+      }
+     ]
+    },
+    {
+     "name": "Charadriidae",
+     "species": [
+      {
+       "id": "77",
+       "lt": "Jūrinis sėjikas",
+       "la": "Pluvialis squatarola"
+      },
+      {
+       "id": "78",
+       "lt": "Dirvinis sėjikas",
+       "la": "Pluvialis apricaria"
+      },
+      {
+       "id": "79",
+       "lt": "Amerikinis sėjikas",
+       "la": "Pluvialis dominica"
+      },
+      {
+       "id": "80",
+       "lt": "Tundrinis sėjikas",
+       "la": "Pluvialis fulva"
+      },
+      {
+       "id": "81",
+       "lt": "Mornelis",
+       "la": "Eudromias morinellus"
+      },
+      {
+       "id": "82",
+       "lt": "Jūrinis kirlikas",
+       "la": "Charadrius hiaticula"
+      },
+      {
+       "id": "83",
+       "lt": "Upinis kirlikas",
+       "la": "Thinornis dubius"
+      },
+      {
+       "id": "84",
+       "lt": "Paprastoji pempė",
+       "la": "Vanellus vanellus"
+      },
+      {
+       "id": "85",
+       "lt": "Stepinė pempė",
+       "la": "Vanellus gregarius"
+      },
+      {
+       "id": "86",
+       "lt": "Baltauodegė pempė",
+       "la": "Vanellus leucurus"
+      },
+      {
+       "id": "87",
+       "lt": "Juodakojis kirlikas",
+       "la": "Anarhynchus alexandrinus"
+      }
+     ]
+    },
+    {
+     "name": "Scolopacidae",
+     "species": [
+      {
+       "id": "88",
+       "lt": "Vidutinė kuolinga",
+       "la": "Numenius phaeopus"
+      },
+      {
+       "id": "89",
+       "lt": "Didžioji kuolinga",
+       "la": "Numenius arquata"
+      },
+      {
+       "id": "90",
+       "lt": "Laplandinis griciukas",
+       "la": "Limosa lapponica"
+      },
+      {
+       "id": "91",
+       "lt": "Paprastasis griciukas",
+       "la": "Limosa limosa"
+      },
+      {
+       "id": "92",
+       "lt": "Oželis nykštukas",
+       "la": "Lymnocryptes minimus"
+      },
+      {
+       "id": "93",
+       "lt": "Slanka",
+       "la": "Scolopax rusticola"
+      },
+      {
+       "id": "94",
+       "lt": "Stulgys",
+       "la": "Gallinago media"
+      },
+      {
+       "id": "95",
+       "lt": "Perkūno oželis",
+       "la": "Gallinago gallinago"
+      },
+      {
+       "id": "96",
+       "lt": "Terekija",
+       "la": "Xenus cinereus"
+      },
+      {
+       "id": "97",
+       "lt": "Krantinis tilvikas",
+       "la": "Actitis hypoleucos"
+      },
+      {
+       "id": "98",
+       "lt": "Dėmėtasis krantinis tilvikas",
+       "la": "Actitis macularius"
+      },
+      {
+       "id": "99",
+       "lt": "Plokščiasnapis plaukikas",
+       "la": "Phalaropus fulicarius"
+      },
+      {
+       "id": "100",
+       "lt": "Apvaliasnapis plaukikas",
+       "la": "Phalaropus lobatus"
+      },
+      {
+       "id": "101",
+       "lt": "Brastinis tilvikas",
+       "la": "Tringa ochropus"
+      },
+      {
+       "id": "102",
+       "lt": "Kūdrinis tilvikas",
+       "la": "Tringa stagnatilis"
+      },
+      {
+       "id": "103",
+       "lt": "Tikutis",
+       "la": "Tringa glareola"
+      },
+      {
+       "id": "104",
+       "lt": "Raudonkojis tulikas",
+       "la": "Tringa totanus"
+      },
+      {
+       "id": "105",
+       "lt": "Tamsusis tilvikas",
+       "la": "Tringa erythropus"
+      },
+      {
+       "id": "106",
+       "lt": "Žaliakojis tulikas",
+       "la": "Tringa nebularia"
+      },
+      {
+       "id": "107",
+       "lt": "Akmenė",
+       "la": "Arenaria interpres"
+      },
+      {
+       "id": "108",
+       "lt": "Islandinis bėgikas",
+       "la": "Calidris canutus"
+      },
+      {
+       "id": "109",
+       "lt": "Gaidukas",
+       "la": "Calidris pugnax"
+      },
+      {
+       "id": "110",
+       "lt": "Plokščiasnapis bėgikas",
+       "la": "Calidris falcinellus"
+      },
+      {
+       "id": "111",
+       "lt": "Lenktasnapis bėgikas",
+       "la": "Calidris ferruginea"
+      },
+      {
+       "id": "112",
+       "lt": "Teminko bėgikas",
+       "la": "Calidris temminckii"
+      },
+      {
+       "id": "113",
+       "lt": "Smiltinukas",
+       "la": "Calidris alba"
+      },
+      {
+       "id": "114",
+       "lt": "Juodakrūtis bėgikas",
+       "la": "Calidris alpina"
+      },
+      {
+       "id": "115",
+       "lt": "Jūrinis bėgikas",
+       "la": "Calidris maritima"
+      },
+      {
+       "id": "116",
+       "lt": "Raibakrūtis bėgikas",
+       "la": "Calidris melanotos"
+      },
+      {
+       "id": "117",
+       "lt": "Mažasis bėgikas",
+       "la": "Calidris minuta"
+      }
+     ]
+    },
+    {
+     "name": "Glareolidae",
+     "species": [
+      {
+       "id": "118",
+       "lt": "Juodasparnė kregždūnė",
+       "la": "Glareola nordmanni"
+      }
+     ]
+    },
+    {
+     "name": "Stercorariidae",
+     "species": [
+      {
+       "id": "119",
+       "lt": "Smailiauodegis plėšikas",
+       "la": "Stercorarius parasiticus"
+      },
+      {
+       "id": "120",
+       "lt": "Ilgauodegis plėšikas",
+       "la": "Stercorarius longicaudus"
+      },
+      {
+       "id": "121",
+       "lt": "Bukauodegis plėšikas",
+       "la": "Stercorarius pomarinus"
+      },
+      {
+       "id": "122",
+       "lt": "Didysis plėšikas",
+       "la": "Stercorarius skua"
+      }
+     ]
+    },
+    {
+     "name": "Alcidae",
+     "species": [
+      {
+       "id": "123",
+       "lt": "Mormonas",
+       "la": "Fratercula arctica"
+      },
+      {
+       "id": "124",
+       "lt": "Taistė",
+       "la": "Cepphus grylle"
+      },
+      {
+       "id": "125",
+       "lt": "Alka",
+       "la": "Alca torda"
+      },
+      {
+       "id": "126",
+       "lt": "Mažoji alka",
+       "la": "Alle alle"
+      },
+      {
+       "id": "127",
+       "lt": "Laibasnapis narūnėlis",
+       "la": "Uria aalge"
+      }
+     ]
+    },
+    {
+     "name": "Laridae",
+     "species": [
+      {
+       "id": "128",
+       "lt": "Mažoji žuvėdra",
+       "la": "Sternula albifrons"
+      },
+      {
+       "id": "129",
+       "lt": "Plėšrioji žuvėdra",
+       "la": "Hydroprogne caspia"
+      },
+      {
+       "id": "130",
+       "lt": "Baltaskruostė žuvėdra",
+       "la": "Chlidonias hybrida"
+      },
+      {
+       "id": "131",
+       "lt": "Baltasparnė žuvėdra",
+       "la": "Chlidonias leucopterus"
+      },
+      {
+       "id": "132",
+       "lt": "Juodoji žuvėdra",
+       "la": "Chlidonias niger"
+      },
+      {
+       "id": "133",
+       "lt": "Margasnapė žuvėdra",
+       "la": "Thalasseus sandvicensis"
+      },
+      {
+       "id": "134",
+       "lt": "Poliarinė žuvėdra",
+       "la": "Sterna paradisaea"
+      },
+      {
+       "id": "135",
+       "lt": "Upinė žuvėdra",
+       "la": "Sterna hirundo"
+      },
+      {
+       "id": "136",
+       "lt": "Mažasis kiras",
+       "la": "Hydrocoloeus minutus"
+      },
+      {
+       "id": "137",
+       "lt": "Rožinis kiras",
+       "la": "Rhodostethia rosea"
+      },
+      {
+       "id": "138",
+       "lt": "Tripirštis kiras",
+       "la": "Rissa tridactyla"
+      },
+      {
+       "id": "139",
+       "lt": "Skeltauodegis kiras",
+       "la": "Xema sabini"
+      },
+      {
+       "id": "140",
+       "lt": "Laibasnapis kiras",
+       "la": "Chroicocephalus genei"
+      },
+      {
+       "id": "141",
+       "lt": "Bonaparto kiras",
+       "la": "Chroicocephalus philadelphia"
+      },
+      {
+       "id": "142",
+       "lt": "Rudagalvis kiras",
+       "la": "Chroicocephalus ridibundus"
+      },
+      {
+       "id": "143",
+       "lt": "Karibinis kiras",
+       "la": "Leucophaeus atricilla"
+      },
+      {
+       "id": "144",
+       "lt": "Kiras kvatoklis",
+       "la": "Ichthyaetus ichthyaetus"
+      },
+      {
+       "id": "145",
+       "lt": "Juodagalvis kiras",
+       "la": "Ichthyaetus melanocephalus"
+      },
+      {
+       "id": "146",
+       "lt": "Žieduotasnapis kiras",
+       "la": "Larus delawarensis"
+      },
+      {
+       "id": "147",
+       "lt": "Paprastasis kiras",
+       "la": "Larus canus"
+      },
+      {
+       "id": "148",
+       "lt": "Kaspijinis kiras",
+       "la": "Larus cachinnans"
+      },
+      {
+       "id": "149",
+       "lt": "Sidabrinis kiras",
+       "la": "Larus argentatus"
+      },
+      {
+       "id": "150",
+       "lt": "Geltonkojis kiras",
+       "la": "Larus michahellis"
+      },
+      {
+       "id": "151",
+       "lt": "Balnuotasis kiras",
+       "la": "Larus marinus"
+      },
+      {
+       "id": "152",
+       "lt": "Didysis poliarinis kiras",
+       "la": "Larus hyperboreus"
+      },
+      {
+       "id": "153",
+       "lt": "Silkinis kiras",
+       "la": "Larus fuscus"
+      },
+      {
+       "id": "154",
+       "lt": "Tolimųjų Rytų kiras",
+       "la": "Larus schistisagus"
+      },
+      {
+       "id": "155",
+       "lt": "Mažasis poliarinis kiras",
+       "la": "Larus glaucoides"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "GAVIIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Gaviidae",
+     "species": [
+      {
+       "id": "156",
+       "lt": "Rudakaklis naras",
+       "la": "Gavia stellata"
+      },
+      {
+       "id": "157",
+       "lt": "Ledinis naras",
+       "la": "Gavia immer"
+      },
+      {
+       "id": "158",
+       "lt": "Geltonsnapis naras",
+       "la": "Gavia adamsii"
+      },
+      {
+       "id": "159",
+       "lt": "Juodakaklis naras",
+       "la": "Gavia arctica"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "PROCELLARIIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Hydrobatidae",
+     "species": [
+      {
+       "id": "160",
+       "lt": "Šiaurinis audrašauklis",
+       "la": "Hydrobates leucorhous"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "CICONIIFROMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Ciconiidae",
+     "species": [
+      {
+       "id": "161",
+       "lt": "Juodasis gandras",
+       "la": "Ciconia nigra"
+      },
+      {
+       "id": "162",
+       "lt": "Baltasis gandras",
+       "la": "Ciconia ciconia"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "SULIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Sulidae",
+     "species": [
+      {
+       "id": "163",
+       "lt": "Šiaurinis padūkėlis",
+       "la": "Morus bassanus"
+      }
+     ]
+    },
+    {
+     "name": "Phalacrocoracidae",
+     "species": [
+      {
+       "id": "164",
+       "lt": "Mažasis kormoranas",
+       "la": "Microcarbo pygmaeus"
+      },
+      {
+       "id": "165",
+       "lt": "Kuoduotasis kormoranas",
+       "la": "Gulosus aristotelis"
+      },
+      {
+       "id": "166",
+       "lt": "Didysis kormoranas",
+       "la": "Phalacrocorax carbo"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "PELECANIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Threskiornithidae",
+     "species": [
+      {
+       "id": "167",
+       "lt": "Rudasis ibis",
+       "la": "Plegadis falcinellus"
+      },
+      {
+       "id": "168",
+       "lt": "Girnovė",
+       "la": "Platalea leucorodia"
+      }
+     ]
+    },
+    {
+     "name": "Pelecanidae",
+     "species": [
+      {
+       "id": "169",
+       "lt": "Rožinis pelikanas",
+       "la": "Pelecanus onocrotalus"
+      },
+      {
+       "id": "170",
+       "lt": "Garbanotasis pelikanas",
+       "la": "Pelecanus crispus"
+      }
+     ]
+    },
+    {
+     "name": "Ardeidae",
+     "species": [
+      {
+       "id": "171",
+       "lt": "Didysis baublys",
+       "la": "Botaurus stellaris"
+      },
+      {
+       "id": "172",
+       "lt": "Mažasis baublys",
+       "la": "Botaurus minutus"
+      },
+      {
+       "id": "173",
+       "lt": "Mažasis baltasis garnys",
+       "la": "Egretta garzetta"
+      },
+      {
+       "id": "174",
+       "lt": "Naktikovis",
+       "la": "Nycticorax nycticorax"
+      },
+      {
+       "id": "175",
+       "lt": "Geltonasis garnys",
+       "la": "Ardeola ralloides"
+      },
+      {
+       "id": "176",
+       "lt": "Didysis baltasis garnys",
+       "la": "Ardea alba"
+      },
+      {
+       "id": "177",
+       "lt": "Ibiškasis garnys",
+       "la": "Ardea ibis"
+      },
+      {
+       "id": "178",
+       "lt": "Purpurinis garnys",
+       "la": "Ardea purpurea"
+      },
+      {
+       "id": "179",
+       "lt": "Pilkasis garnys",
+       "la": "Ardea cinerea"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "CAPRIMULGIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Caprimulgidae",
+     "species": [
+      {
+       "id": "180",
+       "lt": "Lėlys",
+       "la": "Caprimulgus europaeus"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "APODIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Apodidae",
+     "species": [
+      {
+       "id": "181",
+       "lt": "Baltapilvis alpinis čiurlys",
+       "la": "Tachymarptis melba"
+      },
+      {
+       "id": "182",
+       "lt": "Juodasis čiurlys",
+       "la": "Apus apus"
+      },
+      {
+       "id": "183",
+       "lt": "Blyškusis čiurlys",
+       "la": "Apus pallidus"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "STRIGIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Tytonidae",
+     "species": [
+      {
+       "id": "184",
+       "lt": "Liepsnotoji pelėda",
+       "la": "Tyto alba"
+      }
+     ]
+    },
+    {
+     "name": "Strigidae",
+     "species": [
+      {
+       "id": "185",
+       "lt": "Lututė",
+       "la": "Aegolius funereus"
+      },
+      {
+       "id": "186",
+       "lt": "Pelėdikė",
+       "la": "Athene noctua"
+      },
+      {
+       "id": "187",
+       "lt": "Raiboji pelėda",
+       "la": "Surnia ulula"
+      },
+      {
+       "id": "188",
+       "lt": "Žvirblinė pelėda",
+       "la": "Glaucidium passerinum"
+      },
+      {
+       "id": "189",
+       "lt": "Apuokėlis",
+       "la": "Otus scops"
+      },
+      {
+       "id": "190",
+       "lt": "Balinė pelėda",
+       "la": "Asio flammeus"
+      },
+      {
+       "id": "191",
+       "lt": "Mažasis apuokas",
+       "la": "Asio otus"
+      },
+      {
+       "id": "192",
+       "lt": "Baltoji pelėda",
+       "la": "Bubo scandiacus"
+      },
+      {
+       "id": "193",
+       "lt": "Didysis apuokas",
+       "la": "Bubo bubo"
+      },
+      {
+       "id": "194",
+       "lt": "Naminė pelėda",
+       "la": "Strix aluco"
+      },
+      {
+       "id": "195",
+       "lt": "Uralinė pelėda",
+       "la": "Strix uralensis"
+      },
+      {
+       "id": "196",
+       "lt": "Laplandinė pelėda",
+       "la": "Strix nebulosa"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ACCIPITRIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Pandionidae",
+     "species": [
+      {
+       "id": "197",
+       "lt": "Žuvininkas",
+       "la": "Pandion haliaetus"
+      }
+     ]
+    },
+    {
+     "name": "Accipitridae",
+     "species": [
+      {
+       "id": "198",
+       "lt": "Palšasis peslys",
+       "la": "Elanus caeruleus"
+      },
+      {
+       "id": "199",
+       "lt": "Vapsvaėdis",
+       "la": "Pernis apivorus"
+      },
+      {
+       "id": "200",
+       "lt": "Tamsusis grifas",
+       "la": "Aegypius monachus"
+      },
+      {
+       "id": "201",
+       "lt": "Palšasis grifas",
+       "la": "Gyps fulvus"
+      },
+      {
+       "id": "202",
+       "lt": "Gyvatėdis",
+       "la": "Circaetus gallicus"
+      },
+      {
+       "id": "203",
+       "lt": "Didysis erelis rėksnys",
+       "la": "Clanga clanga"
+      },
+      {
+       "id": "204",
+       "lt": "Mažasis erelis rėksnys",
+       "la": "Clanga pomarina"
+      },
+      {
+       "id": "205",
+       "lt": "Nykštukinis erelis",
+       "la": "Hieraaetus pennatus"
+      },
+      {
+       "id": "206",
+       "lt": "Nepalinis erelis",
+       "la": "Aquila nipalensis"
+      },
+      {
+       "id": "207",
+       "lt": "Karališkasis erelis",
+       "la": "Aquila heliaca"
+      },
+      {
+       "id": "208",
+       "lt": "Kilnusis erelis",
+       "la": "Aquila chrysaetos"
+      },
+      {
+       "id": "209",
+       "lt": "Juostuotasis sakalinis erelis",
+       "la": "Aquila fasciata"
+      },
+      {
+       "id": "210",
+       "lt": "Paukštvanagis",
+       "la": "Accipiter nisus"
+      },
+      {
+       "id": "211",
+       "lt": "Vištvanagis",
+       "la": "Astur gentilis"
+      },
+      {
+       "id": "212",
+       "lt": "Stepinė lingė",
+       "la": "Circus macrourus"
+      },
+      {
+       "id": "213",
+       "lt": "Javinė lingė",
+       "la": "Circus cyaneus"
+      },
+      {
+       "id": "214",
+       "lt": "Pievinė lingė",
+       "la": "Circus pygargus"
+      },
+      {
+       "id": "215",
+       "lt": "Nendrinė lingė",
+       "la": "Circus aeruginosus"
+      },
+      {
+       "id": "216",
+       "lt": "Rudasis peslys",
+       "la": "Milvus milvus"
+      },
+      {
+       "id": "217",
+       "lt": "Juodasis peslys",
+       "la": "Milvus migrans"
+      },
+      {
+       "id": "218",
+       "lt": "Jūrinis erelis",
+       "la": "Haliaeetus albicilla"
+      },
+      {
+       "id": "219",
+       "lt": "Tūbuotasis suopis",
+       "la": "Buteo lagopus"
+      },
+      {
+       "id": "220",
+       "lt": "Paprastasis suopis",
+       "la": "Buteo buteo"
+      },
+      {
+       "id": "221",
+       "lt": "Stepinis suopis",
+       "la": "Buteo rufinus"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "BUCEROTIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Upupidae",
+     "species": [
+      {
+       "id": "222",
+       "lt": "Kukutis",
+       "la": "Upupa epops"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "CORACIIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Coraciidae",
+     "species": [
+      {
+       "id": "223",
+       "lt": "Žalvarnis",
+       "la": "Coracias garrulus"
+      }
+     ]
+    },
+    {
+     "name": "Meropidae",
+     "species": [
+      {
+       "id": "224",
+       "lt": "Bitininkas",
+       "la": "Merops apiaster"
+      }
+     ]
+    },
+    {
+     "name": "Alcedinidae",
+     "species": [
+      {
+       "id": "225",
+       "lt": "Tulžys",
+       "la": "Alcedo atthis"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "PICIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Picidae",
+     "species": [
+      {
+       "id": "226",
+       "lt": "Grąžiagalvė",
+       "la": "Jynx torquilla"
+      },
+      {
+       "id": "227",
+       "lt": "Žalioji meleta",
+       "la": "Picus viridis"
+      },
+      {
+       "id": "228",
+       "lt": "Pilkoji meleta",
+       "la": "Picus canus"
+      },
+      {
+       "id": "229",
+       "lt": "Juodoji meleta",
+       "la": "Dryocopus martius"
+      },
+      {
+       "id": "230",
+       "lt": "Tripirštis genys",
+       "la": "Picoides tridactylus"
+      },
+      {
+       "id": "231",
+       "lt": "Vidutinis margasis genys",
+       "la": "Dendrocoptes medius"
+      },
+      {
+       "id": "232",
+       "lt": "Baltnugaris genys",
+       "la": "Dendrocopos leucotos"
+      },
+      {
+       "id": "233",
+       "lt": "Didysis margasis genys",
+       "la": "Dendrocopos major"
+      },
+      {
+       "id": "234",
+       "lt": "Sirinis margasis genys",
+       "la": "Dendrocopos syriacus"
+      },
+      {
+       "id": "235",
+       "lt": "Mažasis margasis genys",
+       "la": "Dryobates minor"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "FALCONIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Falconidae",
+     "species": [
+      {
+       "id": "236",
+       "lt": "Stepinis pelėsakalis",
+       "la": "Falco naumanni"
+      },
+      {
+       "id": "237",
+       "lt": "Paprastasis pelėsakalis",
+       "la": "Falco tinnunculus"
+      },
+      {
+       "id": "238",
+       "lt": "Raudonkojis sakalas",
+       "la": "Falco vespertinus"
+      },
+      {
+       "id": "239",
+       "lt": "Startsakalis",
+       "la": "Falco columbarius"
+      },
+      {
+       "id": "240",
+       "lt": "Eleonoros sakalas",
+       "la": "Falco eleonorae"
+      },
+      {
+       "id": "241",
+       "lt": "Skėtsakalis",
+       "la": "Falco subbuteo"
+      },
+      {
+       "id": "242",
+       "lt": "Sakalas keleivis",
+       "la": "Falco peregrinus"
+      },
+      {
+       "id": "243",
+       "lt": "Medžioklinis sakalas",
+       "la": "Falco rusticolus"
+      },
+      {
+       "id": "244",
+       "lt": "Taurusis sakalas",
+       "la": "Falco cherrug"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "PSITTACIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Psittaculidae",
+     "species": [
+      {
+       "id": "245",
+       "lt": "Kramerio papūga",
+       "la": "Psittacula krameri"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "PASSERIFORMES",
+   "extra": false,
+   "families": [
+    {
+     "name": "Oriolidae",
+     "species": [
+      {
+       "id": "246",
+       "lt": "Volungė",
+       "la": "Oriolus oriolus"
+      }
+     ]
+    },
+    {
+     "name": "Laniidae",
+     "species": [
+      {
+       "id": "247",
+       "lt": "Plėšrioji medšarkė",
+       "la": "Lanius excubitor"
+      },
+      {
+       "id": "248",
+       "lt": "Sibirinė medšarkė",
+       "la": "Lanius borealis (sibiricus)"
+      },
+      {
+       "id": "249",
+       "lt": "Juodakaktė medšarkė",
+       "la": "Lanius minor"
+      },
+      {
+       "id": "250",
+       "lt": "Paprastoji medšarkė",
+       "la": "Lanius collurio"
+      },
+      {
+       "id": "251",
+       "lt": "Turkestaninė medšarkė",
+       "la": "Lanius phoenicuroides"
+      }
+     ]
+    },
+    {
+     "name": "Corvidae",
+     "species": [
+      {
+       "id": "252",
+       "lt": "Sibirinis kėkštas",
+       "la": "Perisoreus infaustus"
+      },
+      {
+       "id": "253",
+       "lt": "Kėkštas",
+       "la": "Garrulus glandarius"
+      },
+      {
+       "id": "254",
+       "lt": "Šarka",
+       "la": "Pica pica"
+      },
+      {
+       "id": "255",
+       "lt": "Riešutinė",
+       "la": "Nucifraga caryocatactes"
+      },
+      {
+       "id": "256",
+       "lt": "Kuosa",
+       "la": "Coloeus monedula"
+      },
+      {
+       "id": "257",
+       "lt": "Kovas",
+       "la": "Corvus frugilegus"
+      },
+      {
+       "id": "258",
+       "lt": "Kranklys",
+       "la": "Corvus corax"
+      },
+      {
+       "id": "259",
+       "lt": "Pilkoji varna",
+       "la": "Corvus corone"
+      }
+     ]
+    },
+    {
+     "name": "Remizidae",
+     "species": [
+      {
+       "id": "260",
+       "lt": "Remeza",
+       "la": "Remiz pendulinus"
+      }
+     ]
+    },
+    {
+     "name": "Paridae",
+     "species": [
+      {
+       "id": "261",
+       "lt": "Žydroji zylė",
+       "la": "Cyanistes cyanus"
+      },
+      {
+       "id": "262",
+       "lt": "Mėlynoji zylė",
+       "la": "Cyanistes caeruleus"
+      },
+      {
+       "id": "263",
+       "lt": "Didžioji zylė",
+       "la": "Parus major"
+      },
+      {
+       "id": "264",
+       "lt": "Juodoji zylė",
+       "la": "Periparus ater"
+      },
+      {
+       "id": "265",
+       "lt": "Kuoduotoji zylė",
+       "la": "Lophophanes cristatus"
+      },
+      {
+       "id": "266",
+       "lt": "Paprastoji pilkoji zylė",
+       "la": "Poecile palustris"
+      },
+      {
+       "id": "267",
+       "lt": "Šiaurinė pilkoji zylė",
+       "la": "Poecile montanus"
+      }
+     ]
+    },
+    {
+     "name": "Panuridae",
+     "species": [
+      {
+       "id": "268",
+       "lt": "Ūsuotoji zylė",
+       "la": "Panurus biarmicus"
+      }
+     ]
+    },
+    {
+     "name": "Alaudidae",
+     "species": [
+      {
+       "id": "269",
+       "lt": "Lygutė",
+       "la": "Lullula arborea"
+      },
+      {
+       "id": "270",
+       "lt": "Dirvinis vieversys",
+       "la": "Alauda arvensis"
+      },
+      {
+       "id": "271",
+       "lt": "Kuoduotasis vieversys",
+       "la": "Galerida cristata"
+      },
+      {
+       "id": "272",
+       "lt": "Raguotasis vieversys",
+       "la": "Eremophila alpestris"
+      },
+      {
+       "id": "273",
+       "lt": "Didysis trumpapirštis vieversys",
+       "la": "Calandrella brachydactyla"
+      },
+      {
+       "id": "274",
+       "lt": "Paprastasis stepinis vieversys",
+       "la": "Melanocorypha calandra"
+      },
+      {
+       "id": "275",
+       "lt": "Pilkasis trumpapirštis vieversys",
+       "la": "Alaudala rufescens"
+      }
+     ]
+    },
+    {
+     "name": "Acrocephalidae",
+     "species": [
+      {
+       "id": "276",
+       "lt": "Paprastoji tošinukė",
+       "la": "Hippolais icterina"
+      },
+      {
+       "id": "277",
+       "lt": "Mažoji tošinukė",
+       "la": "Iduna caligata"
+      },
+      {
+       "id": "278",
+       "lt": "Ežerinė nendrinukė",
+       "la": "Acrocephalus schoenobaenus"
+      },
+      {
+       "id": "279",
+       "lt": "Meldinė nendrinukė",
+       "la": "Acrocephalus paludicola"
+      },
+      {
+       "id": "280",
+       "lt": "Indinė nendrinukė",
+       "la": "Acrocephalus agricola"
+      },
+      {
+       "id": "281",
+       "lt": "Sodinė nendrinukė",
+       "la": "Acrocephalus dumetorum"
+      },
+      {
+       "id": "282",
+       "lt": "Karklinė nendrinukė",
+       "la": "Acrocephalus palustris"
+      },
+      {
+       "id": "283",
+       "lt": "Mažoji krakšlė",
+       "la": "Acrocephalus scirpaceus"
+      },
+      {
+       "id": "284",
+       "lt": "Didžioji krakšlė",
+       "la": "Acrocephalus arundinaceus"
+      }
+     ]
+    },
+    {
+     "name": "Locustellidae",
+     "species": [
+      {
+       "id": "285",
+       "lt": "Upinis žiogelis",
+       "la": "Locustella fluviatilis"
+      },
+      {
+       "id": "286",
+       "lt": "Nendrinis žiogelis",
+       "la": "Locustella luscinioides"
+      },
+      {
+       "id": "287",
+       "lt": "Margasis žiogelis",
+       "la": "Locustella naevia"
+      }
+     ]
+    },
+    {
+     "name": "Hirundinidae",
+     "species": [
+      {
+       "id": "288",
+       "lt": "Urvinė kregždė",
+       "la": "Riparia riparia"
+      },
+      {
+       "id": "289",
+       "lt": "Šelmeninė kregždė",
+       "la": "Hirundo rustica"
+      },
+      {
+       "id": "290",
+       "lt": "Langinė kregždė",
+       "la": "Delichon urbicum"
+      },
+      {
+       "id": "291",
+       "lt": "Rytinė langinė kregždė",
+       "la": "Delichon dasypus"
+      },
+      {
+       "id": "292",
+       "lt": "Balkaninė kregždė",
+       "la": "Cecropis rufula"
+      }
+     ]
+    },
+    {
+     "name": "Aegithalidae",
+     "species": [
+      {
+       "id": "293",
+       "lt": "Ilgauodegė zylė",
+       "la": "Aegithalos caudatus"
+      }
+     ]
+    },
+    {
+     "name": "Phylloscopidae",
+     "species": [
+      {
+       "id": "294",
+       "lt": "Žalioji pečialinda",
+       "la": "Phylloscopus sibilatrix"
+      },
+      {
+       "id": "295",
+       "lt": "Geltonbruvė pečialinda",
+       "la": "Phylloscopus inornatus"
+      },
+      {
+       "id": "296",
+       "lt": "Sajaninė pečialinda",
+       "la": "Phylloscopus humei"
+      },
+      {
+       "id": "297",
+       "lt": "Nykštukinė pečialinda",
+       "la": "Phylloscopus proregulus"
+      },
+      {
+       "id": "298",
+       "lt": "Storasnapė pečialinda",
+       "la": "Phylloscopus schwarzi"
+      },
+      {
+       "id": "299",
+       "lt": "Rudoji pečialinda",
+       "la": "Phylloscopus fuscatus"
+      },
+      {
+       "id": "300",
+       "lt": "Ankstyvoji pečialinda",
+       "la": "Phylloscopus trochilus"
+      },
+      {
+       "id": "301",
+       "lt": "Iberinė pečialinda",
+       "la": "Phylloscopus ibericus"
+      },
+      {
+       "id": "302",
+       "lt": "Pilkoji pečialinda",
+       "la": "Phylloscopus collybita"
+      },
+      {
+       "id": "303",
+       "lt": "Šiaurinė pečialinda",
+       "la": "Phylloscopus trochiloides"
+      },
+      {
+       "id": "304",
+       "lt": "Arktinė pečialinda",
+       "la": "Phylloscopus borealis"
+      }
+     ]
+    },
+    {
+     "name": "Sylviidae",
+     "species": [
+      {
+       "id": "305",
+       "lt": "Sodinė devynbalsė",
+       "la": "Sylvia borin"
+      },
+      {
+       "id": "306",
+       "lt": "Juodagalvė devynbalsė",
+       "la": "Sylvia atricapilla"
+      },
+      {
+       "id": "307",
+       "lt": "Raiboji devynbalsė",
+       "la": "Curruca nisoria"
+      },
+      {
+       "id": "308",
+       "lt": "Pilkoji devynbalsė",
+       "la": "Curruca curruca"
+      },
+      {
+       "id": "309",
+       "lt": "Rudoji devynbalsė",
+       "la": "Curruca communis"
+      },
+      {
+       "id": "310",
+       "lt": "Juodagalvė sardininė devynbalsė",
+       "la": "Curruca melanocephala"
+      },
+      {
+       "id": "311",
+       "lt": "Alpinė devynbalsė",
+       "la": "Curruca cantillans"
+      }
+     ]
+    },
+    {
+     "name": "Bombycillidae",
+     "species": [
+      {
+       "id": "312",
+       "lt": "Svirbelis",
+       "la": "Bombycilla garrulus"
+      }
+     ]
+    },
+    {
+     "name": "Regulidae",
+     "species": [
+      {
+       "id": "313",
+       "lt": "Baltabruvis nykštukas",
+       "la": "Regulus ignicapilla"
+      },
+      {
+       "id": "314",
+       "lt": "Paprastasis nykštukas",
+       "la": "Regulus regulus"
+      }
+     ]
+    },
+    {
+     "name": "Sittidae",
+     "species": [
+      {
+       "id": "315",
+       "lt": "Bukutis",
+       "la": "Sitta europaea"
+      }
+     ]
+    },
+    {
+     "name": "Certhiidae",
+     "species": [
+      {
+       "id": "316",
+       "lt": "Miškinis liputis",
+       "la": "Certhia familiaris"
+      },
+      {
+       "id": "317",
+       "lt": "Sodinis liputis",
+       "la": "Certhia brachydactyla"
+      }
+     ]
+    },
+    {
+     "name": "Troglodytidae",
+     "species": [
+      {
+       "id": "318",
+       "lt": "Karietaitė",
+       "la": "Troglodytes troglodytes"
+      }
+     ]
+    },
+    {
+     "name": "Sturnidae",
+     "species": [
+      {
+       "id": "319",
+       "lt": "Paprastasis varnėnas",
+       "la": "Sturnus vulgaris"
+      },
+      {
+       "id": "320",
+       "lt": "Rožinis varnėnas",
+       "la": "Pastor roseus"
+      }
+     ]
+    },
+    {
+     "name": "Cinclidae",
+     "species": [
+      {
+       "id": "321",
+       "lt": "Vandeninis strazdas",
+       "la": "Cinclus cinclus"
+      }
+     ]
+    },
+    {
+     "name": "Turdidae",
+     "species": [
+      {
+       "id": "322",
+       "lt": "Amalinis strazdas",
+       "la": "Turdus viscivorus"
+      },
+      {
+       "id": "323",
+       "lt": "Strazdas giesmininkas",
+       "la": "Turdus philomelos"
+      },
+      {
+       "id": "324",
+       "lt": "Baltabruvis strazdas",
+       "la": "Turdus iliacus"
+      },
+      {
+       "id": "325",
+       "lt": "Juodasis strazdas",
+       "la": "Turdus merula"
+      },
+      {
+       "id": "326",
+       "lt": "Smilginis strazdas",
+       "la": "Turdus pilaris"
+      },
+      {
+       "id": "327",
+       "lt": "Baltagurklis strazdas",
+       "la": "Turdus torquatus"
+      }
+     ]
+    },
+    {
+     "name": "Muscicapidae",
+     "species": [
+      {
+       "id": "328",
+       "lt": "Pilkoji musinukė",
+       "la": "Muscicapa striata"
+      },
+      {
+       "id": "329",
+       "lt": "Liepsnelė",
+       "la": "Erithacus rubecula"
+      },
+      {
+       "id": "330",
+       "lt": "Rytinė lakštingala",
+       "la": "Luscinia luscinia"
+      },
+      {
+       "id": "331",
+       "lt": "Vakarinė lakštingala",
+       "la": "Luscinia megarhynchos"
+      },
+      {
+       "id": "332",
+       "lt": "Mėlyngurklė",
+       "la": "Luscinia svecica"
+      },
+      {
+       "id": "333",
+       "lt": "Mažoji musinukė",
+       "la": "Ficedula parva"
+      },
+      {
+       "id": "334",
+       "lt": "Baltakaklė musinukė",
+       "la": "Ficedula albicollis"
+      },
+      {
+       "id": "335",
+       "lt": "Margasparnė musinukė",
+       "la": "Ficedula hypoleuca"
+      },
+      {
+       "id": "336",
+       "lt": "Mėlynuodegė",
+       "la": "Tarsiger cyanurus"
+      },
+      {
+       "id": "337",
+       "lt": "Dūminė raudonuodegė",
+       "la": "Phoenicurus ochruros"
+      },
+      {
+       "id": "338",
+       "lt": "Paprastoji raudonuodegė",
+       "la": "Phoenicurus phoenicurus"
+      },
+      {
+       "id": "339",
+       "lt": "Paprastoji kiauliukė",
+       "la": "Saxicola rubetra"
+      },
+      {
+       "id": "340",
+       "lt": "Sibirinė juodagalvė kiauliukė",
+       "la": "Saxicola maurus"
+      },
+      {
+       "id": "341",
+       "lt": "Europinė juodagalvė kiauliukė",
+       "la": "Saxicola rubicola"
+      },
+      {
+       "id": "342",
+       "lt": "Dykuminis kūltupys",
+       "la": "Oenanthe deserti"
+      },
+      {
+       "id": "343",
+       "lt": "Margasis kūltupys",
+       "la": "Oenanthe pleschanka"
+      },
+      {
+       "id": "344",
+       "lt": "Paprastasis kūltupys",
+       "la": "Oenanthe oenanthe"
+      },
+      {
+       "id": "345",
+       "lt": "Palšasis kūltupys",
+       "la": "Oenanthe isabellina"
+      }
+     ]
+    },
+    {
+     "name": "Prunellidae",
+     "species": [
+      {
+       "id": "346",
+       "lt": "Juodagurklis erškėtžvirblis",
+       "la": "Prunella atrogularis"
+      },
+      {
+       "id": "347",
+       "lt": "Paprastasis erškėtžvirblis",
+       "la": "Prunella modularis"
+      },
+      {
+       "id": "348",
+       "lt": "Sibirinis erškėtžvirblis",
+       "la": "Prunella montanella"
+      }
+     ]
+    },
+    {
+     "name": "Passeridae",
+     "species": [
+      {
+       "id": "349",
+       "lt": "Karklažvirblis",
+       "la": "Passer montanus"
+      },
+      {
+       "id": "350",
+       "lt": "Naminis žvirblis",
+       "la": "Passer domesticus"
+      }
+     ]
+    },
+    {
+     "name": "Motacillidae",
+     "species": [
+      {
+       "id": "351",
+       "lt": "Kalninė kielė",
+       "la": "Motacilla cinerea"
+      },
+      {
+       "id": "352",
+       "lt": "Geltonoji kielė",
+       "la": "Motacilla flava"
+      },
+      {
+       "id": "353",
+       "lt": "Geltongalvė kielė",
+       "la": "Motacilla citreola"
+      },
+      {
+       "id": "354",
+       "lt": "Baltoji kielė",
+       "la": "Motacilla alba"
+      },
+      {
+       "id": "355",
+       "lt": "Dirvoninis kalviukas",
+       "la": "Anthus campestris"
+      },
+      {
+       "id": "356",
+       "lt": "Rišaro kalviukas",
+       "la": "Anthus richardi"
+      },
+      {
+       "id": "357",
+       "lt": "Tundrinis kalviukas",
+       "la": "Anthus gustavi"
+      },
+      {
+       "id": "358",
+       "lt": "Miškinis kalviukas",
+       "la": "Anthus trivialis"
+      },
+      {
+       "id": "359",
+       "lt": "Rudagurklis kalviukas",
+       "la": "Anthus cervinus"
+      },
+      {
+       "id": "360",
+       "lt": "Pievinis kalviukas",
+       "la": "Anthus pratensis"
+      },
+      {
+       "id": "361",
+       "lt": "Uolinis kalviukas",
+       "la": "Anthus petrosus"
+      },
+      {
+       "id": "362",
+       "lt": "Vandeninis kalviukas",
+       "la": "Anthus spinoletta"
+      }
+     ]
+    },
+    {
+     "name": "Fringillidae",
+     "species": [
+      {
+       "id": "363",
+       "lt": "Šiaurinis kikilis",
+       "la": "Fringilla montifringilla"
+      },
+      {
+       "id": "364",
+       "lt": "Paprastasis kikilis",
+       "la": "Fringilla coelebs"
+      },
+      {
+       "id": "365",
+       "lt": "Svilikas",
+       "la": "Coccothraustes coccothraustes"
+      },
+      {
+       "id": "366",
+       "lt": "Raudongalvė sniegena",
+       "la": "Carpodacus erythrinus"
+      },
+      {
+       "id": "367",
+       "lt": "Pušinė sniegena",
+       "la": "Pinicola enucleator"
+      },
+      {
+       "id": "368",
+       "lt": "Juodagalvė sniegena",
+       "la": "Pyrrhula pyrrhula"
+      },
+      {
+       "id": "369",
+       "lt": "Žaliukė",
+       "la": "Chloris chloris"
+      },
+      {
+       "id": "370",
+       "lt": "Geltonsnapis čivylis",
+       "la": "Linaria flavirostris"
+      },
+      {
+       "id": "371",
+       "lt": "Paprastasis čivylis",
+       "la": "Linaria cannabina"
+      },
+      {
+       "id": "372",
+       "lt": "Čimčiakas",
+       "la": "Acanthis flammea"
+      },
+      {
+       "id": "373",
+       "lt": "Margasparnis kryžiasnapis",
+       "la": "Loxia leucoptera"
+      },
+      {
+       "id": "374",
+       "lt": "Pušinis kryžiasnapis",
+       "la": "Loxia pytyopsittacus"
+      },
+      {
+       "id": "375",
+       "lt": "Eglinis kryžiasnapis",
+       "la": "Loxia curvirostra"
+      },
+      {
+       "id": "376",
+       "lt": "Dagilis",
+       "la": "Carduelis carduelis"
+      },
+      {
+       "id": "377",
+       "lt": "Svilikėlis",
+       "la": "Serinus serinus"
+      },
+      {
+       "id": "378",
+       "lt": "Alksninukas",
+       "la": "Spinus spinus"
+      }
+     ]
+    },
+    {
+     "name": "Calcaridae",
+     "species": [
+      {
+       "id": "379",
+       "lt": "Sniegstartė",
+       "la": "Plectrophenax nivalis"
+      },
+      {
+       "id": "380",
+       "lt": "Pentinuotoji starta",
+       "la": "Calcarius lapponicus"
+      }
+     ]
+    },
+    {
+     "name": "Emberizidae",
+     "species": [
+      {
+       "id": "381",
+       "lt": "Nendrinė starta",
+       "la": "Emberiza schoeniclus"
+      },
+      {
+       "id": "382",
+       "lt": "Mažoji starta",
+       "la": "Emberiza pusilla"
+      },
+      {
+       "id": "383",
+       "lt": "Šiaurinė starta",
+       "la": "Emberiza rustica"
+      },
+      {
+       "id": "384",
+       "lt": "Pilkoji starta",
+       "la": "Emberiza calandra"
+      },
+      {
+       "id": "385",
+       "lt": "Sodinė starta",
+       "la": "Emberiza hortulana"
+      },
+      {
+       "id": "386",
+       "lt": "Baltagalvė starta",
+       "la": "Emberiza leucocephalos"
+      },
+      {
+       "id": "387",
+       "lt": "Geltonoji starta",
+       "la": "Emberiza citrinella"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "extra": [
+  {
+   "name": "ANSERIFORMES",
+   "extra": true,
+   "families": [
+    {
+     "name": "Anatidae",
+     "species": [
+      {
+       "id": "P1",
+       "lt": "Baltagalvė stačiauodegė antis",
+       "la": "Oxyura leucocephala"
+      },
+      {
+       "id": "P2",
+       "lt": "Juodoji gulbė",
+       "la": "Cygnus atratus"
+      },
+      {
+       "id": "P3",
+       "lt": "Šiaurinė kanadinė berniklė",
+       "la": "Branta hutchinsii"
+      },
+      {
+       "id": "P4",
+       "lt": "Kalninė žąsis",
+       "la": "Anser indicus"
+      },
+      {
+       "id": "P5",
+       "lt": "Snieginė žąsis",
+       "la": "Anser caerulescens"
+      },
+      {
+       "id": "P6",
+       "lt": "Miškinė antis",
+       "la": "Aix sponsa"
+      },
+      {
+       "id": "P7",
+       "lt": "Baltakuodė klykuolė",
+       "la": "Bucephala albeola"
+      },
+      {
+       "id": "P8",
+       "lt": "Kuoduotasis dančiasnapis",
+       "la": "Lophodytes cucullatus"
+      },
+      {
+       "id": "P9",
+       "lt": "Puikioji cyplė",
+       "la": "Mareca sibilatrix"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "GALLIFORMES",
+   "extra": true,
+   "families": [
+    {
+     "name": "Phasianidae",
+     "species": [
+      {
+       "id": "P10",
+       "lt": "Karališkasis fazanas",
+       "la": "Syrmaticus reevesii"
+      },
+      {
+       "id": "P11",
+       "lt": "Auksinis fazanas",
+       "la": "Chrysolophus pictus"
+      },
+      {
+       "id": "P12",
+       "lt": "Paprastasis fazanas",
+       "la": "Phasianus colchicus"
+      },
+      {
+       "id": "P13",
+       "lt": "Sidabrinis fazanas",
+       "la": "Lophura nycthemera"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "COLUMBIFORMES",
+   "extra": true,
+   "families": [
+    {
+     "name": "Columbidae",
+     "species": [
+      {
+       "id": "P14",
+       "lt": "Ilgauodegis purplelis",
+       "la": "Oena capensis"
+      },
+      {
+       "id": "P15",
+       "lt": "Kuoduotasis karvelis",
+       "la": "Ocyphaps lophotes"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "PELECANIFORMES",
+   "extra": true,
+   "families": [
+    {
+     "name": "Threskiornithidae",
+     "species": [
+      {
+       "id": "P16",
+       "lt": "Šventasis ibis",
+       "la": "Threskiornis aethiopicus"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ACCIPITRIFORMES",
+   "extra": true,
+   "families": [
+    {
+     "name": "Accipitridae",
+     "species": [
+      {
+       "id": "P17",
+       "lt": "Baltapetis jūrinis erelis",
+       "la": "Haliaeetus pelagicus"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "PSITTACIFORMES",
+   "extra": true,
+   "families": [
+    {
+     "name": "Psittacidae",
+     "species": [
+      {
+       "id": "P18",
+       "lt": "Kalita",
+       "la": "Myiopsitta monachus"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "PASSERIFORMES",
+   "extra": true,
+   "families": [
+    {
+     "name": "Zosteropidae",
+     "species": [
+      {
+       "id": "P19",
+       "lt": "Rudašonis baltavokis",
+       "la": "Zosterops erythropleurus"
+      }
+     ]
+    },
+    {
+     "name": "Sturnidae",
+     "species": [
+      {
+       "id": "P20",
+       "lt": "Rusvapilvis blizgusis varnėnas",
+       "la": "Lamprotornis superbus"
+      }
+     ]
+    },
+    {
+     "name": "Icteridae",
+     "species": [
+      {
+       "id": "P21",
+       "lt": "Žvilgusis mažasis trupialas",
+       "la": "Euphagus cyanocephalus"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

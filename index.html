@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#efece3">
+  <title>Paukščių lyderių lentelė</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="app">
+    <!-- Page 1: import -->
+    <section class="page" id="page-import" hidden>
+      <div class="page-inner">
+        <div id="drop" class="drop">
+          <p class="drop-title">Nutempkite komandų ZIP failus čia</p>
+          <p class="drop-or">arba</p>
+          <button id="pickBtn" class="btn" type="button">Importuoti failus</button>
+          <input id="fileInput" type="file" multiple accept=".zip,.json,application/zip,application/json" hidden>
+        </div>
+
+        <div id="report" class="report" hidden></div>
+
+        <div class="teams-head">
+          <h2>Importuotos komandos <span id="teamCount" class="muted"></span></h2>
+          <div class="actions">
+            <button id="blurBtn" class="btn ghost" type="button" aria-pressed="true">Rodyti skaičius</button>
+            <button id="csvBtn" class="btn ghost" type="button">Eksportuoti CSV</button>
+            <button id="clearBtn" class="btn ghost danger" type="button">Išvalyti viską</button>
+          </div>
+        </div>
+        <div id="teamsWrap"></div>
+      </div>
+    </section>
+
+    <!-- Page 2: leaderboard reveal -->
+    <section class="page" id="page-board" hidden>
+      <div class="board-top">
+        <div class="top-left">
+          <button id="fsBtn" class="icon-btn" type="button" aria-label="Pilnas ekranas" title="Pilnas ekranas (F)"></button>
+        </div>
+        <div class="selector">
+          <button id="prevBtn" class="arrow" type="button" aria-label="Ankstesnė rūšis"></button>
+          <div class="bird">
+            <div id="birdName" class="bird-name"></div>
+            <div id="birdLatin" class="bird-latin"></div>
+          </div>
+          <button id="nextBtn" class="arrow" type="button" aria-label="Kita rūšis"></button>
+        </div>
+        <div class="total">
+          <div id="totalNum" class="total-num">0</div>
+          <div id="totalLabel" class="total-label">Rūšių</div>
+        </div>
+      </div>
+      <div id="birdPos" class="bird-pos"></div>
+      <div id="board" class="board"></div>
+      <p id="boardEmpty" class="board-empty" hidden>Importuokite komandų failus (Page 1)</p>
+    </section>
+
+    <!-- Page 3: statistics -->
+    <section class="page" id="page-stats" hidden>
+      <div class="stats-tools">
+        <button id="statsFsBtn" class="icon-btn" type="button" aria-label="Pilnas ekranas" title="Pilnas ekranas (F)"></button>
+        <button id="exportBirdsBtn" class="icon-btn with-text" type="button">Eksportuoti</button>
+      </div>
+      <div id="stats" class="stats"></div>
+    </section>
+  </main>
+
+  <nav id="pager" class="pager" aria-label="Puslapiai"></nav>
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <script src="zip-reader.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
