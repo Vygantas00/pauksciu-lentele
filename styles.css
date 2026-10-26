@@ -231,12 +231,12 @@ body.fs #page-board { padding: 28px 40px; }
 .arrow:disabled { opacity: .35; cursor: default; }
 .arrow svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .bird { width: min(40vw, 560px); text-align: center; }
-.bird-name { font-size: 40px; font-weight: 500; line-height: 46px; height: 46px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bird-name { font-size: 40px; font-weight: 500; line-height: 60px; height: 60px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .bird-name.long { font-size: 32px; }
 .bird-name .kind { font: 600 13px var(--sans); letter-spacing: .08em; text-transform: uppercase; vertical-align: 6px; margin-right: 10px; padding: 3px 10px; border-radius: 999px; }
 .kind.fam { background: #e3eefa; color: var(--family); }
 .kind.cus { background: #e6ecf0; color: var(--custom); }
-.bird-latin { font-size: 20px; font-style: italic; color: var(--muted); height: 28px; line-height: 28px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bird-latin { font-size: 20px; font-style: italic; color: var(--muted); height: 30px; line-height: 30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .bird-pos { flex: none; height: 20px; margin: 6px 0 14px; }
 
 .total { justify-self: start; margin-left: clamp(28px, 5vw, 110px); min-width: 150px; text-align: center; line-height: 1; }
