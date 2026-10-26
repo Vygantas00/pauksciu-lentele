@@ -283,9 +283,9 @@ body.fs #page-board { padding: 28px 40px; }
 }
 
 /* ---------- Final stage: only the table and the counter, medals for the top three ---------- */
-body.final-stage .selector,
-body.final-stage .bird-pos,
-body.final-stage .icon-btn { visibility: hidden; }          /* keep their space so nothing moves */
+body.final-stage #page-board .selector,
+body.final-stage #page-board .bird-pos,
+body.final-stage #page-board .icon-btn { visibility: hidden; }   /* keep their space so nothing moves; only on the Lentelė page */
 .card.gold   { background: #f4d777; }
 .card.silver { background: #cfd4db; }
 .card.bronze { background: #e3b184; }
@@ -293,7 +293,7 @@ body.final-stage .icon-btn { visibility: hidden; }          /* keep their space 
 .card.gold .score, .card.silver .score, .card.bronze .score { color: var(--ink); }
 
 /* Final stage: the counter moves to the middle of the header panel */
-body.final-stage .total { grid-column: 1 / -1; grid-row: 1; justify-self: center; margin-left: 0; margin-top: 6px; }
+body.final-stage #page-board .total { grid-column: 1 / -1; grid-row: 1; justify-self: center; margin-left: 0; margin-top: 6px; }
 
 /* Duomenys page: totals are blurred until the organiser reveals them */
 .secret { transition: filter .2s; }
