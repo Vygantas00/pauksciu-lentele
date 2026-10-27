@@ -313,3 +313,40 @@ body.numbers-hidden .secret { filter: blur(9px); user-select: none; pointer-even
 .icon-btn.with-text { width: auto; padding: 0 18px; font: 15px var(--sans); color: var(--accent); }
 #page-stats { position: relative; padding-top: 64px; }
 #page-stats .stats { margin-top: 0; }
+
+/* ---------- Duomenys: correcting a team's birds ---------- */
+.edit-badge { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; background: var(--tint); color: var(--accent); font: 600 11px var(--sans); }
+.adj-title { margin-top: 48px; }
+.adj-note { margin: 0 0 14px; font: 14px var(--sans); color: var(--muted); }
+.adj-team { background: #fff; border: 1px solid var(--line); border-radius: 14px; margin-bottom: 8px; overflow: visible; }
+.adj-head { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 16px; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; border-radius: 14px; }
+.adj-head:hover { background: #f6f3ea; }
+.adj-chev { flex: none; width: 20px; height: 20px; color: var(--muted); transition: transform .15s; }
+.adj-chev svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.adj-team.open .adj-chev { transform: rotate(90deg); }
+.adj-name { flex: 1; min-width: 0; font-size: 18px; font-weight: 500; }
+.adj-head .edit-badge { margin-left: 0; }
+.adj-total { flex: none; min-width: 3ch; text-align: right; font-size: 20px; font-weight: 500; color: var(--accent); font-variant-numeric: tabular-nums lining-nums; }
+.adj-body { padding: 4px 18px 16px; border-top: 1px solid var(--line); }
+.adj-add { position: relative; margin: 14px 0 8px; }
+.adj-add input { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font: 16px var(--sans); background: #fffefb; color: var(--ink); outline: none; }
+.adj-add input:focus { border-color: var(--accent); }
+.adj-suggest { position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 30; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 10px 28px rgba(20, 14, 4, 0.25); overflow: hidden; }
+.adj-opt { display: block; width: 100%; padding: 9px 14px; border: 0; border-top: 1px solid var(--line); background: none; text-align: left; color: inherit; font: inherit; cursor: pointer; }
+.adj-opt:first-child { border-top: 0; }
+.adj-opt.active, .adj-opt:hover { background: var(--tint); }
+.adj-lt { display: block; font-size: 17px; font-weight: 500; line-height: 1.25; }
+.adj-la { display: block; font-size: 13px; font-style: italic; color: var(--muted); }
+.adj-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-top: 1px solid var(--line); }
+.adj-bird { flex: 1; min-width: 0; }
+.adj-empty { margin: 12px 0; color: var(--muted); font: 14px var(--sans); }
+.adj-foot { margin-top: 12px; }
+.btn.small { padding: 7px 14px; font-size: 14px; }
+.tag { display: inline-block; margin-left: 10px; padding: 1px 8px; border-radius: 999px; font: 600 11px/1.5 var(--sans); letter-spacing: .06em; text-transform: uppercase; vertical-align: 2px; }
+.tag.fam { background: #e3eefa; color: var(--family); }
+.tag.own { background: #e6ecf0; color: var(--custom); }
+.tag.org { background: #fbf1de; color: var(--warn); }
+
+/* toast with an undo button */
+.toast { display: flex; align-items: center; gap: 16px; }
+.toast-undo { border: 0; background: none; color: #a9d8b3; font: 600 15px var(--sans); letter-spacing: .04em; text-transform: uppercase; cursor: pointer; padding: 4px; }

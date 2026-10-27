@@ -43,12 +43,19 @@ const save = (key, value) => {
 };
 
 let toastTimer;
-function toast(message) {
+// onUndo adds an "Atšaukti" button that reverts the change.
+function toast(message, onUndo) {
   const t = $('toast');
-  t.textContent = message;
+  t.replaceChildren(el('span', 'toast-text', message));
+  if (onUndo) {
+    const undo = el('button', 'toast-undo', 'Atšaukti');
+    undo.type = 'button';
+    undo.addEventListener('click', () => { t.hidden = true; onUndo(); });
+    t.append(undo);
+  }
   t.hidden = false;
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { t.hidden = true; }, 3000);
+  toastTimer = setTimeout(() => { t.hidden = true; }, onUndo ? 7000 : 3000);
 }
 
 // ---------------------------------------------------------------- master species list
@@ -64,7 +71,7 @@ function indexMaster(data) {
           name: f.name, order: o.name, idx: fIdx++, ids: new Set(f.species.map((s) => s.id)), tickable: prefix === 'm',
         });
         for (const sp of f.species) {
-          master.species.set(sp.id, { ...sp, idx: sIdx++ });
+          master.species.set(sp.id, { ...sp, idx: sIdx++, nlt: norm(sp.lt), nla: norm(sp.la), family: `${prefix}:${o.name}:${f.name}` });
           master.known.add(norm(sp.lt));
           master.known.add(norm(sp.la));
         }
@@ -77,15 +84,39 @@ function indexMaster(data) {
 let teams = {};
 const teamTotal = (t) => t.species.length + t.families.length + t.custom.length;
 
+// A team keeps what its file said (`base`) and the organiser's corrections (`edits`);
+// `species / families / custom` are derived from both, so the rest of the app just reads those.
+const emptyEdits = () => ({ addedSpecies: [], removedSpecies: [], removedFamilies: [], removedCustom: [] });
+const hasEdits = (t) => Object.values(t.edits).some((l) => l.length);
+const editCount = (t) => Object.values(t.edits).reduce((n, l) => n + l.length, 0);
+
+function applyEdits(t) {
+  const e = t.edits;
+  const removedSp = new Set(e.removedSpecies);
+  const removedFam = new Set(e.removedFamilies);
+  const removedCus = new Set(e.removedCustom);
+  t.families = t.base.families.filter((k) => !removedFam.has(k));
+  const species = t.base.species.filter((id) => !removedSp.has(id));
+  for (const id of e.addedSpecies) if (!species.includes(id)) species.push(id);
+  // same rule as on the phone: species inside a ticked family are not counted
+  t.species = species.filter((id) => !t.families.some((k) => master.families.get(k).ids.has(id)));
+  t.custom = t.base.custom.filter((c) => !removedCus.has(norm(c.name)));
+}
+
 function sanitizeStored(stored) {
   const out = {};
+  const list = (v) => (Array.isArray(v) ? v : []);
   for (const [k, t] of Object.entries(stored || {})) {
     if (!t || typeof t.name !== 'string') continue;
+    const b = t.base || t;   // teams saved before corrections existed keep their numbers as the base
+    const e = t.edits || {};
     out[k] = {
       key: k, name: t.name, exportedAt: t.exportedAt ?? null, importedAt: t.importedAt ?? 0, fileName: t.fileName || '',
-      species: Array.isArray(t.species) ? t.species : [], families: Array.isArray(t.families) ? t.families : [],
-      custom: Array.isArray(t.custom) ? t.custom : [], warnings: Array.isArray(t.warnings) ? t.warnings : [],
+      base: { species: list(b.species), families: list(b.families), custom: list(b.custom) },
+      edits: { addedSpecies: list(e.addedSpecies), removedSpecies: list(e.removedSpecies), removedFamilies: list(e.removedFamilies), removedCustom: list(e.removedCustom) },
+      species: [], families: [], custom: [], warnings: list(t.warnings),
     };
+    applyEdits(out[k]);
   }
   return out;
 }
@@ -189,9 +220,13 @@ async function importFiles(fileList) {
       }
       teams[key] = {
         key, name: parsed.name, exportedAt: when, importedAt: Date.now(), fileName: file.name,
-        species: parsed.species, families: parsed.families, custom: parsed.custom, warnings: parsed.warnings,
+        base: { species: parsed.species, families: parsed.families, custom: parsed.custom },
+        edits: existing ? existing.edits : emptyEdits(),       // the organiser's corrections stay on top of the new file
+        species: [], families: [], custom: [], warnings: parsed.warnings,
       };
-      lines.push({ level: 'ok', file: file.name, text: `${existing ? 'Atnaujinta' : 'Importuota'}: ${parsed.name}`, value: teamTotal(teams[key]) });
+      applyEdits(teams[key]);
+      const kept = existing && hasEdits(existing) ? ` · išsaugota taisymų: ${editCount(existing)}` : '';
+      lines.push({ level: 'ok', file: file.name, text: `${existing ? 'Atnaujinta' : 'Importuota'}: ${parsed.name}${kept}`, value: teamTotal(teams[key]) });
       for (const w of parsed.warnings) lines.push({ level: 'warn', file: file.name, text: w });
     } catch (e) {
       lines.push({ level: 'error', file: file.name, text: e.message || 'Nepavyko perskaityti failo' });
@@ -199,6 +234,7 @@ async function importFiles(fileList) {
   }
   save(TEAMS_KEY, teams);
   renderTeams();
+  renderAdjust();
   rebuildBoard();
   renderReport(lines);
   return lines;
@@ -256,6 +292,7 @@ function renderTeams() {
       badge.title = t.warnings.join('\n');
       nameTd.append(badge);
     }
+    if (hasEdits(t)) nameTd.append(el('span', 'edit-badge', 'koreguota'));
     tr.append(nameTd,
       el('td', 'num total-cell secret', String(teamTotal(t))),
       el('td', 'num secret', String(t.species.length)),
@@ -271,6 +308,7 @@ function renderTeams() {
       delete teams[t.key];
       save(TEAMS_KEY, teams);
       renderTeams();
+      renderAdjust();
       rebuildBoard();
     });
     const rmTd = el('td');
@@ -301,6 +339,192 @@ function downloadBlob(blob, fileName) {
   a.click();
   a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 10000);
+}
+
+// ---------------------------------------------------------------- Duomenys: correcting a team's birds
+const expandedTeams = new Set();   // teams whose list is open; everything starts collapsed
+let refocusTeam = null;
+
+function commitEdits(t) {
+  applyEdits(t);
+  save(TEAMS_KEY, teams);
+  renderTeams();
+  renderAdjust();
+  rebuildBoard();
+}
+
+// Runs a change on t.edits, refreshes everything and offers "Atšaukti" for it.
+function editTeam(t, message, change) {
+  const before = JSON.stringify(t.edits);
+  change(t.edits);
+  commitEdits(t);
+  toast(message, () => {
+    t.edits = JSON.parse(before);
+    commitEdits(t);
+  });
+}
+
+const without = (list, v) => list.filter((x) => x !== v);
+
+function removeSpecies(t, id) {
+  const info = master.species.get(id);
+  editTeam(t, `Pašalinta iš ${t.name}: ${info.lt}`, (e) => {
+    if (e.addedSpecies.includes(id)) e.addedSpecies = without(e.addedSpecies, id);
+    else e.removedSpecies.push(id);
+  });
+}
+
+function removeFamily(t, key) {
+  editTeam(t, `Pašalinta šeima iš ${t.name}: ${master.families.get(key).name}`, (e) => { e.removedFamilies.push(key); });
+}
+
+function removeCustom(t, name) {
+  editTeam(t, `Pašalinta iš ${t.name}: ${name}`, (e) => { e.removedCustom.push(norm(name)); });
+}
+
+function addSpecies(t, id) {
+  const info = master.species.get(id);
+  if (t.species.includes(id)) { toast('Ši rūšis jau yra šios komandos sąraše'); return; }
+  if (t.families.some((k) => master.families.get(k).ids.has(id))) {
+    toast('Šios šeimos pažymėta visa šeima – pirmiausia pašalinkite šeimą');
+    return;
+  }
+  refocusTeam = t.key;
+  editTeam(t, `Pridėta komandai ${t.name}: ${info.lt}`, (e) => {
+    if (e.removedSpecies.includes(id)) e.removedSpecies = without(e.removedSpecies, id);   // it was removed earlier: restore
+    else if (!t.base.species.includes(id)) e.addedSpecies.push(id);
+  });
+}
+
+function suggestionsFor(t, query) {
+  const q = norm(query.trim());
+  if (!q) return [];
+  const hits = [];
+  for (const sp of master.species.values()) {
+    if (t.species.includes(sp.id)) continue;
+    if (t.families.some((k) => master.families.get(k).ids.has(sp.id))) continue;
+    const pos = Math.min(...[sp.nlt.indexOf(q), sp.nla.indexOf(q)].map((i) => (i < 0 ? 999 : i)));
+    if (pos < 999) hits.push({ sp, pos });
+  }
+  hits.sort((a, b) => a.pos - b.pos || a.sp.idx - b.sp.idx);
+  return hits.slice(0, 8).map((h) => h.sp);
+}
+
+function birdRow(name, latin, tagText, tagClass, onRemove) {
+  const row = el('div', 'adj-row');
+  const bird = el('span', 'adj-bird');
+  const lt = el('span', 'adj-lt', name);
+  if (tagText) lt.append(el('span', `tag ${tagClass}`, tagText));
+  bird.append(lt);
+  if (latin) bird.append(el('span', 'adj-la', latin));
+  const rm = el('button', 'btn ghost danger small', 'Pašalinti');
+  rm.type = 'button';
+  rm.addEventListener('click', onRemove);
+  row.append(bird, rm);
+  return row;
+}
+
+function addField(t) {
+  const wrap = el('div', 'adj-add');
+  const input = el('input');
+  input.type = 'text';
+  input.placeholder = 'Pridėti paukštį (įveskite pavadinimą)…';
+  input.setAttribute('autocomplete', 'off');
+  input.setAttribute('aria-label', `Pridėti paukštį komandai ${t.name}`);
+  const box = el('div', 'adj-suggest');
+  box.hidden = true;
+  let items = [];
+  let active = -1;
+  const paint = () => {
+    box.replaceChildren(...items.map((sp, i) => {
+      const b = el('button', `adj-opt${i === active ? ' active' : ''}`);
+      b.type = 'button';
+      b.append(el('span', 'adj-lt', sp.lt), el('span', 'adj-la', sp.la));
+      b.addEventListener('mousedown', (e) => { e.preventDefault(); pick(sp); });
+      return b;
+    }));
+    box.hidden = !items.length;
+  };
+  const pick = (sp) => { input.value = ''; items = []; box.hidden = true; addSpecies(t, sp.id); };
+  input.addEventListener('input', () => { items = suggestionsFor(t, input.value); active = items.length ? 0 : -1; paint(); });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' && items.length) { e.preventDefault(); active = (active + 1) % items.length; paint(); }
+    else if (e.key === 'ArrowUp' && items.length) { e.preventDefault(); active = (active - 1 + items.length) % items.length; paint(); }
+    else if (e.key === 'Enter') { e.preventDefault(); if (items[active]) pick(items[active]); }
+    else if (e.key === 'Escape') { items = []; box.hidden = true; }
+  });
+  input.addEventListener('blur', () => { box.hidden = true; });
+  wrap.append(input, box);
+  return wrap;
+}
+
+const CHEVRON = '<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>';
+
+function teamBody(t) {
+  const body = el('div', 'adj-body');
+  body.append(addField(t));
+  const list = el('div', 'adj-list');
+  const added = new Set(t.edits.addedSpecies);
+  const spIds = [...t.species].sort((x, y) => master.species.get(x).idx - master.species.get(y).idx);
+  for (const id of spIds.filter((i) => added.has(i))) {
+    const s = master.species.get(id);
+    list.append(birdRow(s.lt, s.la, 'Papildyta', 'org', () => removeSpecies(t, id)));
+  }
+  for (const c of t.custom) list.append(birdRow(c.name, '', 'Pridėta', 'own', () => removeCustom(t, c.name)));
+  for (const k of t.families) list.append(birdRow(master.families.get(k).name, '', 'Šeima', 'fam', () => removeFamily(t, k)));
+  for (const id of spIds.filter((i) => !added.has(i))) {
+    const s = master.species.get(id);
+    list.append(birdRow(s.lt, s.la, '', '', () => removeSpecies(t, id)));
+  }
+  if (!list.children.length) list.append(el('p', 'adj-empty', 'Šiai komandai nepažymėtas nė vienas paukštis'));
+  body.append(list);
+  if (hasEdits(t)) {
+    const foot = el('div', 'adj-foot');
+    const reset = el('button', 'btn ghost small', 'Atstatyti pradinį failą');
+    reset.type = 'button';
+    reset.addEventListener('click', () => {
+      if (!confirm(`Atstatyti „${t.name}“ pagal pradinį failą? Visi jūsų taisymai bus panaikinti.`)) return;
+      t.edits = emptyEdits();
+      commitEdits(t);
+    });
+    foot.append(reset);
+    body.append(foot);
+  }
+  return body;
+}
+
+function renderAdjust() {
+  const wrap = $('adjustWrap');
+  const list = Object.values(teams).sort((a, b) => collator.compare(a.name, b.name));
+  if (!list.length) {
+    wrap.replaceChildren(el('div', 'empty-teams', 'Dar nėra importuotų komandų'));
+    return;
+  }
+  wrap.replaceChildren(...list.map((t) => {
+    const open = expandedTeams.has(t.key);
+    const box = el('div', `adj-team${open ? ' open' : ''}`);
+    const head = el('button', 'adj-head');
+    head.type = 'button';
+    head.setAttribute('aria-expanded', String(open));
+    const chev = el('span', 'adj-chev');
+    chev.innerHTML = CHEVRON;
+    head.append(chev, el('span', 'adj-name', t.name));
+    if (hasEdits(t)) head.append(el('span', 'edit-badge', 'koreguota'));
+    head.append(el('span', 'adj-total secret', String(teamTotal(t))));
+    head.addEventListener('click', () => {
+      if (expandedTeams.has(t.key)) expandedTeams.delete(t.key); else expandedTeams.add(t.key);
+      renderAdjust();
+    });
+    box.append(head);
+    if (open) box.append(teamBody(t));
+    return box;
+  }));
+  if (refocusTeam) {
+    const idx = list.findIndex((t) => t.key === refocusTeam);
+    refocusTeam = null;
+    const input = idx >= 0 && wrap.children[idx].querySelector('.adj-add input');
+    if (input) input.focus();
+  }
 }
 
 // ---------------------------------------------------------------- page 2: leaderboard reveal
@@ -510,12 +734,39 @@ function checkedSpecies() {
   return [...found].map((id) => master.species.get(id)).sort((a, b) => a.idx - b.idx);
 }
 
-// Simple text file: one checked species per line (numbered 1, 2, 3 …), in the order of the Excel list.
+// Two text files: the numbered list of all checked species, and every team with its birds.
 function exportBirdList() {
   const birds = checkedSpecies();
   if (!birds.length) { toast('Nėra pažymėtų rūšių'); return; }
-  const text = '\ufeff' + birds.map((b, i) => `${i + 1}. ${b.lt} (${b.la})`).join('\r\n') + '\r\n';
-  downloadBlob(new Blob([text], { type: 'text/plain;charset=utf-8' }), 'pastebetos-rusys.txt');
+  const txt = (lines) => new Blob(['\ufeff' + lines.join('\r\n') + '\r\n'], { type: 'text/plain;charset=utf-8' });
+  downloadBlob(txt(birds.map((b, i) => `${i + 1}. ${b.lt} (${b.la})`)), 'pastebetos-rusys.txt');
+  // Browsers want a short pause between automatic downloads.
+  setTimeout(() => downloadBlob(txt(teamBirdLines()), 'komandu-rusys.txt'), 500);
+}
+
+// Every team in the order of the final standings (same as the leaderboard), each with its birds in Excel order.
+function teamBirdLines() {
+  const ranked = rank(Object.values(teams).map((t) => ({ t, name: t.name, score: teamTotal(t) })));
+  const lines = [];
+  for (const r of ranked) {
+    const t = r.t;
+    const parts = [`${t.species.length} ${plural(t.species.length, 'rūšis', 'rūšys', 'rūšių')}`];
+    if (t.families.length) parts.push(`${t.families.length} ${plural(t.families.length, 'šeima', 'šeimos', 'šeimų')}`);
+    if (t.custom.length) parts.push(`${t.custom.length} ${plural(t.custom.length, 'pridėta', 'pridėtos', 'pridėtų')}`);
+    lines.push(`${r.place}. ${t.name} – ${r.score}${parts.length > 1 ? ` (${parts.join(', ')})` : ''}`);
+    const sp = [...t.species].map((id) => master.species.get(id)).sort((a, b) => a.idx - b.idx);
+    sp.forEach((b, i) => lines.push(`    ${i + 1}. ${b.lt} (${b.la})`));
+    if (t.families.length) {
+      lines.push('    Šeimos:');
+      t.families.forEach((k) => lines.push(`      ${master.families.get(k).name}`));
+    }
+    if (t.custom.length) {
+      lines.push('    Pridėtos rūšys:');
+      t.custom.forEach((c) => lines.push(`      ${c.name}`));
+    }
+    lines.push('');
+  }
+  return lines;
 }
 
 function renderStats() {
@@ -629,11 +880,13 @@ function init(data) {
     teams = {};
     save(TEAMS_KEY, teams);
     renderTeams();
+    renderAdjust();
     rebuildBoard();
     $('report').hidden = true;
   });
 
   renderTeams();
+  renderAdjust();
   showPage('import');                 // the app always opens on the Duomenys page
   rebuildBoard();
 }

@@ -1,7 +1,7 @@
 'use strict';
 
 // Bump CACHE when any app file changes so browsers pick up the new version.
-const CACHE = 'leaderboard-v32';
+const CACHE = 'leaderboard-v34';
 const FILES = [
   './',
   'index.html',
