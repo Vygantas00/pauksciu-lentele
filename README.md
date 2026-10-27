@@ -10,7 +10,7 @@ Web app (works offline after the first visit). Imports the teams' ZIP files and 
 
 Step numbers are never shown (the teams must not know how many birds are left). Right before the last bird a teaser stage "Paskutinė rūšis jau čia…" is shown with no team highlighted.
 
-After the last step, one more → opens the **final stage**: the bird selection and the buttons are hidden, only the table and the big counter stay in the same places, and the winners are shown in **gold, silver and bronze** (teams with equal totals share a medal). ← goes back to the last bird.
+After the last step, one more → opens the **final stage**: the bird selection and the buttons are hidden, only the table and the big counter stay in the same places, and the winners are shown in **gold, silver and bronze** (only the first three teams get a medal). In this stage equal totals are separated by the number of species that only that team found (the most unique species goes first); if that is equal too, the team that exported its file earlier goes first (e.g. 19:30 beats 19:50); teams still equal after that share a place. Places are never skipped after a tie (1, 1, 2, 3). The CSV and `komandu-rusys.txt` exports use the same final order, and the CSV has an extra "Unikalios rūšys" column. During the show (before the final stage) tied teams just share a place and are ordered by name.. ← goes back to the last bird.
 
 Order of the steps: species seen by the most teams first, rarest last; then whole-family ticks ("Šeima"), then the teams' own added species (same name from several teams = one step).
 

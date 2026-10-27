@@ -122,11 +122,42 @@ function sanitizeStored(stored) {
 }
 
 // Highest score first; equal scores share a place and are ordered by name (so the order never flickers).
+// Places are not skipped after a tie: 1, 1, 2, 3 (not 1, 1, 3, 4).
 function rank(items) {
   const sorted = [...items].sort((a, b) => b.score - a.score || collator.compare(a.name, b.name));
   let place = 1;
   sorted.forEach((it, i) => {
-    if (i > 0 && it.score !== sorted[i - 1].score) place = i + 1;
+    if (i > 0 && it.score !== sorted[i - 1].score) place++;
+    it.place = place;
+  });
+  return sorted;
+}
+
+// Number of list species that only this team found (own added birds and families are not counted).
+function uniqueCounts() {
+  const owners = new Map();
+  for (const t of Object.values(teams)) for (const id of t.species) owners.set(id, (owners.get(id) || 0) + 1);
+  const out = new Map();
+  for (const t of Object.values(teams)) out.set(t.key, t.species.filter((id) => owners.get(id) === 1).length);
+  return out;
+}
+
+// Final standings (used in the final stage and in the exports). Equal totals are separated by
+//   1. the number of species only that team found (more goes first), then
+//   2. the time the team exported its file (earlier goes first).
+// Teams still equal after that (same export time) share a place and are ordered by name. Places are not skipped.
+function rankFinal(items) {
+  const uniq = uniqueCounts();
+  items.forEach((it) => {
+    it.unique = uniq.get(it.key) ?? 0;
+    it.exported = teams[it.key]?.exportedAt ?? Infinity;       // no export time = counts as the latest
+  });
+  const sorted = [...items].sort((a, b) =>
+    b.score - a.score || b.unique - a.unique || (a.exported === b.exported ? 0 : a.exported < b.exported ? -1 : 1) || collator.compare(a.name, b.name));
+  let place = 1;
+  sorted.forEach((it, i) => {
+    const p = sorted[i - 1];
+    if (i > 0 && (it.score !== p.score || it.unique !== p.unique || it.exported !== p.exported)) place++;
     it.place = place;
   });
   return sorted;
@@ -321,11 +352,11 @@ function renderTeams() {
 }
 
 function exportCsv() {
-  const ranked = rank(Object.values(teams).map((t) => ({ t, name: t.name, score: teamTotal(t) })));
+  const ranked = rankFinal(Object.values(teams).map((t) => ({ t, key: t.key, name: t.name, score: teamTotal(t) })));
   if (!ranked.length) { toast('Nėra ką eksportuoti'); return; }
   const esc = (v) => `"${String(v).replace(/"/g, '""')}"`;
-  const rows = [['Vieta', 'Komanda', 'Iš viso', 'Rūšys', 'Šeimos', 'Pridėtos', 'Eksportuota']];
-  for (const r of ranked) rows.push([r.place, r.t.name, r.score, r.t.species.length, r.t.families.length, r.t.custom.length, fmtTime(r.t.exportedAt)]);
+  const rows = [['Vieta', 'Komanda', 'Iš viso', 'Rūšys', 'Šeimos', 'Pridėtos', 'Unikalios rūšys', 'Eksportuota']];
+  for (const r of ranked) rows.push([r.place, r.t.name, r.score, r.t.species.length, r.t.families.length, r.t.custom.length, r.unique, fmtTime(r.t.exportedAt)]);
   const csv = '﻿' + rows.map((r) => r.map(esc).join(';')).join('\r\n');
   downloadBlob(new Blob([csv], { type: 'text/csv;charset=utf-8' }), 'lyderiu-lentele.csv');
 }
@@ -653,27 +684,30 @@ const isFinal = () => stageInfo(cur).kind === 'final';
 
 function updateBoard() {
   const info = stageInfo(cur);
-  const ranked = rank(teamList.map((t) => ({ key: t.key, name: t.name, score: pref.get(t.key)[info.at] })));
+  const fin = info.kind === 'final';
+  const items = teamList.map((t) => ({ key: t.key, name: t.name, score: pref.get(t.key)[info.at] }));
+  // Only the final stage separates equal totals (most species found by that team alone goes first); before it ties just share a place.
+  const ranked = fin ? rankFinal(items) : rank(items);
   currentOrder = ranked;
   const anyScore = ranked.length > 0 && ranked[0].score > 0;
-  const fin = info.kind === 'final';
   const current = info.kind === 'step' ? info.step : null;   // the bird being shown: its finders stay highlighted
   placeCards();
-  for (const r of ranked) {
+  ranked.forEach((r, i) => {
     const card = cards.get(r.key);
     card.querySelector('.score').textContent = r.score;
     card.querySelector('.place').textContent = anyScore ? `${r.place}.` : '';
     card.classList.toggle('leader', !fin && anyScore && r.place === 1);
-    card.classList.toggle('gold', fin && r.score > 0 && r.place === 1);
-    card.classList.toggle('silver', fin && r.score > 0 && r.place === 2);
-    card.classList.toggle('bronze', fin && r.score > 0 && r.place === 3);
+    // medals go to the first three teams of the final order, so there are never more than three winners
+    card.classList.toggle('gold', fin && r.score > 0 && i === 0);
+    card.classList.toggle('silver', fin && r.score > 0 && i === 1);
+    card.classList.toggle('bronze', fin && r.score > 0 && i === 2);
     const found = !!current && current.teams.has(r.key);
     card.classList.remove('gain');
     if (found) {
       void card.offsetWidth;      // restart the little pulse for every new bird
       card.classList.add('gain');
     }
-  }
+  });
 }
 
 let shownTotal = 0;
@@ -746,7 +780,7 @@ function exportBirdList() {
 
 // Every team in the order of the final standings (same as the leaderboard), each with its birds in Excel order.
 function teamBirdLines() {
-  const ranked = rank(Object.values(teams).map((t) => ({ t, name: t.name, score: teamTotal(t) })));
+  const ranked = rankFinal(Object.values(teams).map((t) => ({ t, key: t.key, name: t.name, score: teamTotal(t) })));
   const lines = [];
   for (const r of ranked) {
     const t = r.t;
