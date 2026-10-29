@@ -29,6 +29,9 @@
           <div class="actions">
             <button id="blurBtn" class="btn ghost" type="button" aria-pressed="true">Rodyti skaičius</button>
             <button id="csvBtn" class="btn ghost" type="button">Eksportuoti CSV</button>
+            <button id="backupBtn" class="btn ghost" type="button" title="Visų komandų ir taisymų kopija viename faile">Išsaugoti kopiją</button>
+            <button id="restoreBtn" class="btn ghost" type="button">Įkelti kopiją</button>
+            <input id="restoreInput" type="file" accept=".json,application/json" hidden>
             <button id="clearBtn" class="btn ghost danger" type="button">Išvalyti viską</button>
           </div>
         </div>
@@ -63,14 +66,15 @@
       </div>
       <div id="birdPos" class="bird-pos"></div>
       <div id="board" class="board"></div>
-      <p id="boardEmpty" class="board-empty" hidden>Importuokite komandų failus (Page 1)</p>
+      <p id="boardEmpty" class="board-empty" hidden>Importuokite komandų failus (Duomenys)</p>
+      <button id="backGhost" class="back-ghost" type="button" aria-label="Atgal"></button>
     </section>
 
     <!-- Page 3: statistics -->
     <section class="page" id="page-stats" hidden>
       <div class="stats-tools">
         <button id="statsFsBtn" class="icon-btn" type="button" aria-label="Pilnas ekranas" title="Pilnas ekranas (F)"></button>
-        <button id="exportBirdsBtn" class="icon-btn with-text" type="button">Eksportuoti</button>
+        <button id="exportBirdsBtn" class="icon-btn with-text" type="button">Eksportuoti (2 failai)</button>
       </div>
       <div id="stats" class="stats"></div>
     </section>
@@ -78,6 +82,22 @@
 
   <nav id="pager" class="pager" aria-label="Puslapiai"></nav>
   <div id="toast" class="toast" role="status" hidden></div>
+  <p class="fs-hint">? – klavišų pagalba</p>
+  <div id="help" class="help" hidden role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+    <div class="help-panel">
+      <h2 id="helpTitle">Klavišai</h2>
+      <dl>
+        <dt>1 · 2 · 3</dt><dd>Duomenys · Lentelė · Statistika</dd>
+        <dt>F</dt><dd>Pilnas ekranas (Lentelė, Statistika)</dd>
+        <dt>→ arba tarpas</dt><dd>Lentelė: kita rūšis</dd>
+        <dt>←</dt><dd>Lentelė: atgal</dd>
+        <dt>Home</dt><dd>Lentelė: į pradžią</dd>
+        <dt>End</dt><dd>Lentelė: prie paskutinės rūšies</dd>
+        <dt>?</dt><dd>Ši pagalba (Esc – uždaryti)</dd>
+      </dl>
+      <button id="helpClose" class="btn" type="button">Uždaryti</button>
+    </div>
+  </div>
 
   <script src="zip-reader.js"></script>
   <script src="app.js"></script>

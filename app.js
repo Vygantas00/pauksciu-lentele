@@ -3,6 +3,11 @@
 const TEAMS_KEY = 'lb.teams.v1';   // { teamKey: { key, name, exportedAt, importedAt, fileName, species[], families[], custom[], warnings[] } }
 const PER_COLUMN = 10;             // teams per column on the leaderboard
 const ROW_GAP = 12;
+// One column keeps PER_COLUMN rows; with more columns the teams are spread evenly (15 teams: 8 + 7, not 10 + 5).
+const rowsPerCol = () => {
+  const cols = Math.ceil(teamList.length / PER_COLUMN);
+  return cols <= 1 ? PER_COLUMN : Math.ceil(teamList.length / cols);
+};
 const COL_GAP = 18;
 const MAX_CARD_H = 96;
 
@@ -180,6 +185,7 @@ async function readSubmission(file) {
 
 function parseSubmission(data) {
   if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('Failo turinys neatitinka formato');
+  if (data.type === 'lb-backup') throw new Error('Tai atsarginė kopija – naudokite mygtuką „Įkelti kopiją“');
   const warnings = [];
   const name = typeof data.teamName === 'string' ? data.teamName.replace(/\s+/g, ' ').trim().slice(0, 80) : '';
   if (!name) throw new Error('Trūksta komandos pavadinimo');
@@ -248,6 +254,9 @@ async function importFiles(fileList) {
       if (existing && existing.exportedAt && when < existing.exportedAt) {
         lines.push({ level: 'warn', file: file.name, text: `Praleista: ${parsed.name} – jau įkeltas naujesnis failas` });
         continue;
+      }
+      if (existing && existing.name !== parsed.name) {
+        lines.push({ level: 'warn', file: file.name, text: `Pavadinimas „${parsed.name}“ sutapo su jau esama komanda „${existing.name}“ (didžiosios raidės ir diakritikai nesvarbūs) – duomenys pakeisti` });
       }
       teams[key] = {
         key, name: parsed.name, exportedAt: when, importedAt: Date.now(), fileName: file.name,
@@ -319,11 +328,22 @@ function renderTeams() {
     const tr = el('tr');
     const nameTd = el('td', '', t.name);
     if (t.warnings.length) {
-      const badge = el('span', 'warn-badge', `⚠ ${t.warnings.length}`);
-      badge.title = t.warnings.join('\n');
+      const badge = el('button', 'warn-badge', `⚠ ${t.warnings.length}`);
+      badge.type = 'button';
+      badge.title = 'Rodyti įspėjimus';
+      badge.setAttribute('aria-expanded', String(warnOpen.has(t.key)));
+      badge.addEventListener('click', () => {
+        if (warnOpen.has(t.key)) warnOpen.delete(t.key); else warnOpen.add(t.key);
+        renderTeams();
+      });
       nameTd.append(badge);
     }
     if (hasEdits(t)) nameTd.append(el('span', 'edit-badge', 'koreguota'));
+    if (t.warnings.length && warnOpen.has(t.key)) {
+      const ul = el('ul', 'warn-list');
+      for (const w of t.warnings) ul.append(el('li', '', w));
+      nameTd.append(ul);
+    }
     tr.append(nameTd,
       el('td', 'num total-cell secret', String(teamTotal(t))),
       el('td', 'num secret', String(t.species.length)),
@@ -335,12 +355,10 @@ function renderTeams() {
     rm.type = 'button';
     rm.title = 'Pašalinti komandą';
     rm.addEventListener('click', () => {
-      if (!confirm(`Pašalinti komandą „${t.name}“?`)) return;
+      const before = snapshot();
       delete teams[t.key];
-      save(TEAMS_KEY, teams);
-      renderTeams();
-      renderAdjust();
-      rebuildBoard();
+      refreshAll();
+      toast(`Pašalinta komanda: ${t.name}`, () => restoreSnapshot(before));
     });
     const rmTd = el('td');
     rmTd.append(rm);
@@ -359,6 +377,53 @@ function exportCsv() {
   for (const r of ranked) rows.push([r.place, r.t.name, r.score, r.t.species.length, r.t.families.length, r.t.custom.length, r.unique, fmtTime(r.t.exportedAt)]);
   const csv = '﻿' + rows.map((r) => r.map(esc).join(';')).join('\r\n');
   downloadBlob(new Blob([csv], { type: 'text/csv;charset=utf-8' }), 'lyderiu-lentele.csv');
+  toast('Išsaugota: lyderiu-lentele.csv');
+}
+
+// ---------------------------------------------------------------- undo snapshots and backup file
+const snapshot = () => JSON.stringify(teams);
+
+function refreshAll() {
+  save(TEAMS_KEY, teams);
+  renderTeams();
+  renderAdjust();
+  rebuildBoard();
+}
+
+function restoreSnapshot(json) {
+  teams = sanitizeStored(JSON.parse(json));
+  refreshAll();
+}
+
+// One JSON file with every team, its file data and the organiser's corrections.
+function exportBackup() {
+  if (!Object.keys(teams).length) { toast('Nėra ką saugoti'); return; }
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, '0');
+  const name = `lentele-kopija-${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}.json`;
+  const body = JSON.stringify({ type: 'lb-backup', version: 1, savedAt: d.toISOString(), teams }, null, 1);
+  downloadBlob(new Blob([body], { type: 'application/json' }), name);
+  toast(`Kopija išsaugota: ${name}`);
+}
+
+async function restoreBackup(file) {
+  let restored;
+  try {
+    const data = JSON.parse((await file.text()).replace(/^\ufeff/, ''));
+    if (!data || data.type !== 'lb-backup' || !data.teams || typeof data.teams !== 'object') throw new Error('bad');
+    restored = sanitizeStored(data.teams);
+    if (!Object.keys(restored).length) throw new Error('empty');
+  } catch (e) {
+    toast('Tai nėra tinkamas kopijos failas');
+    return;
+  }
+  const n = Object.keys(restored).length;
+  const cur = Object.keys(teams).length;
+  if (cur && !confirm(`Pakeisti dabar esančias komandas (${cur}) kopijos duomenimis (${n})?`)) return;
+  const before = snapshot();
+  teams = restored;
+  refreshAll();
+  toast(`Atkurta komandų: ${n}`, () => restoreSnapshot(before));
 }
 
 function downloadBlob(blob, fileName) {
@@ -374,6 +439,7 @@ function downloadBlob(blob, fileName) {
 
 // ---------------------------------------------------------------- Duomenys: correcting a team's birds
 const expandedTeams = new Set();   // teams whose list is open; everything starts collapsed
+const warnOpen = new Set();        // teams whose import warnings are shown under the name
 let refocusTeam = null;
 
 function commitEdits(t) {
@@ -531,9 +597,16 @@ function renderAdjust() {
     wrap.replaceChildren(el('div', 'empty-teams', 'Dar nėra importuotų komandų'));
     return;
   }
+  // Keep the page where it is and the keyboard focus on the same row after a change (the whole list is rebuilt).
+  const y = window.scrollY;
+  const ae = document.activeElement;
+  const row = ae && ae.closest ? ae.closest('.adj-row') : null;
+  const keep = row && wrap.contains(row)
+    ? { team: row.closest('.adj-team').dataset.key, idx: [...row.parentNode.children].indexOf(row) } : null;
   wrap.replaceChildren(...list.map((t) => {
     const open = expandedTeams.has(t.key);
     const box = el('div', `adj-team${open ? ' open' : ''}`);
+    box.dataset.key = t.key;
     const head = el('button', 'adj-head');
     head.type = 'button';
     head.setAttribute('aria-expanded', String(open));
@@ -550,6 +623,13 @@ function renderAdjust() {
     if (open) box.append(teamBody(t));
     return box;
   }));
+  window.scrollTo(0, y);
+  if (keep) {
+    const box = [...wrap.children].find((b) => b.dataset.key === keep.team);
+    const rows = box ? box.querySelectorAll('.adj-row') : [];
+    const target = rows.length ? rows[Math.min(keep.idx, rows.length - 1)].querySelector('button') : null;
+    if (target) target.focus({ preventScroll: true });
+  }
   if (refocusTeam) {
     const idx = list.findIndex((t) => t.key === refocusTeam);
     refocusTeam = null;
@@ -645,9 +725,10 @@ function relayout() {
   const head = $('page-board').querySelector('.board-top').offsetHeight + $('birdPos').offsetHeight + 20;
   const H = Math.max(200, content - head);
   const cols = Math.max(1, Math.ceil(teamList.length / PER_COLUMN));
+  const rows = rowsPerCol();
   cardW = (W - (cols - 1) * COL_GAP) / cols;
-  cardH = Math.min((H - (PER_COLUMN - 1) * ROW_GAP) / PER_COLUMN, MAX_CARD_H);
-  board.style.height = `${PER_COLUMN * cardH + (PER_COLUMN - 1) * ROW_GAP}px`;
+  cardH = Math.min((H - (rows - 1) * ROW_GAP) / rows, MAX_CARD_H);
+  board.style.height = `${rows * cardH + (rows - 1) * ROW_GAP}px`;
   board.style.setProperty('--card-h', `${cardH}px`);
   board.classList.add('no-anim');
   for (const card of cards.values()) {
@@ -660,9 +741,10 @@ function relayout() {
 }
 
 function placeCards() {
+  const rows = rowsPerCol();
   currentOrder.forEach((r, i) => {
-    const col = Math.floor(i / PER_COLUMN);
-    const row = i % PER_COLUMN;
+    const col = Math.floor(i / rows);
+    const row = i % rows;
     cards.get(r.key).style.transform = `translate(${col * (cardW + COL_GAP)}px, ${row * (cardH + ROW_GAP)}px)`;
   });
 }
@@ -776,6 +858,7 @@ function exportBirdList() {
   downloadBlob(txt(birds.map((b, i) => `${i + 1}. ${b.lt} (${b.la})`)), 'pastebetos-rusys.txt');
   // Browsers want a short pause between automatic downloads.
   setTimeout(() => downloadBlob(txt(teamBirdLines()), 'komandu-rusys.txt'), 500);
+  toast('Išsaugota: pastebetos-rusys.txt ir komandu-rusys.txt');
 }
 
 // Every team in the order of the final standings (same as the leaderboard), each with its birds in Excel order.
@@ -811,6 +894,7 @@ function renderStats() {
     return;
   }
   const panel = el('section', 'stat-panel wide');
+  panel.append(el('h2', 'stat-title', `Pastebėtos rūšys · ${birds.length}`));
   const cols = el('div', 'stat-cols');
   for (const b of birds) {
     const row = el('div', 'stat-row');
@@ -830,7 +914,10 @@ function showPage(id) {
   if (!PAGES.some((p) => p.id === id)) id = 'import';
   page = id;
   for (const p of PAGES) $(`page-${p.id}`).hidden = p.id !== id;
-  document.querySelectorAll('.pager button').forEach((b) => b.classList.toggle('active', b.dataset.page === id));
+  document.querySelectorAll('.pager button[data-page]').forEach((b) => {
+    b.classList.toggle('active', b.dataset.page === id);
+    b.setAttribute('aria-current', b.dataset.page === id ? 'page' : 'false');
+  });
   window.scrollTo(0, 0);
   if (id === 'board') requestAnimationFrame(relayout);
 }
@@ -846,8 +933,19 @@ document.addEventListener('fullscreenchange', () => {
 });
 window.addEventListener('resize', () => requestAnimationFrame(relayout));
 
+function toggleHelp(show = $('help').hidden) {
+  $('help').hidden = !show;
+  if (show) $('helpClose').focus();
+  else if (document.activeElement) document.activeElement.blur();
+}
+
 document.addEventListener('keydown', (e) => {
   if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const t = e.target;
+  if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) return;   // typing must never switch pages or step the reveal
+  if (e.key === 'Escape' && !$('help').hidden) { toggleHelp(false); return; }
+  if (e.key === '?') { toggleHelp(); return; }
+  if (!$('help').hidden) return;
   const idx = ['1', '2', '3'].indexOf(e.key);
   if (idx >= 0) { showPage(PAGES[idx].id); return; }
   if ((e.key === 'f' || e.key === 'F') && (page === 'board' || page === 'stats')) { toggleFullscreen(); return; }
@@ -857,6 +955,9 @@ document.addEventListener('keydown', (e) => {
   else if (e.key === 'Home') { e.preventDefault(); goto(0); }
   else if (e.key === 'End') { e.preventDefault(); goto(maxStage() - 1); }   // the last bird; → once more opens the final stage
 });
+
+// A focused button would also "click" on Space release and skip a second bird; the reveal handles Space itself.
+document.addEventListener('keyup', (e) => { if (e.key === ' ' && page === 'board') e.preventDefault(); });
 
 // Drag & drop anywhere on the window
 let dragDepth = 0;
@@ -885,9 +986,17 @@ function init(data) {
     b.dataset.page = p.id;
     b.innerHTML = p.icon;
     b.append(document.createTextNode(p.label));
-    b.addEventListener('click', () => showPage(p.id));
+    b.addEventListener('click', (e) => { showPage(p.id); if (e.detail) b.blur(); });   // mouse clicks must not keep focus (Space would press the button)
     pager.append(b);
   }
+  const helpBtn = el('button', 'help-btn', '?');
+  helpBtn.type = 'button';
+  helpBtn.title = 'Klavišų pagalba (?)';
+  helpBtn.setAttribute('aria-label', 'Klavišų pagalba');
+  helpBtn.addEventListener('click', () => toggleHelp(true));
+  pager.append(helpBtn);
+  $('helpClose').addEventListener('click', () => toggleHelp(false));
+  $('help').addEventListener('click', (e) => { if (e.target === $('help')) toggleHelp(false); });
 
   $('fsBtn').innerHTML = ICON_FULLSCREEN;
   $('prevBtn').innerHTML = ICON_PREV;
@@ -896,8 +1005,13 @@ function init(data) {
   $('statsFsBtn').innerHTML = ICON_FULLSCREEN;
   $('statsFsBtn').addEventListener('click', toggleFullscreen);
   $('exportBirdsBtn').addEventListener('click', exportBirdList);
-  $('prevBtn').addEventListener('click', () => goto(cur - 1));
-  $('nextBtn').addEventListener('click', () => goto(cur + 1));
+  $('prevBtn').addEventListener('click', (e) => { goto(cur - 1); if (e.detail) e.currentTarget.blur(); });
+  $('nextBtn').addEventListener('click', (e) => { goto(cur + 1); if (e.detail) e.currentTarget.blur(); });
+  $('backGhost').innerHTML = ICON_PREV;
+  $('backGhost').addEventListener('click', (e) => { goto(cur - 1); if (e.detail) e.currentTarget.blur(); });
+  $('backupBtn').addEventListener('click', exportBackup);
+  $('restoreBtn').addEventListener('click', () => $('restoreInput').click());
+  $('restoreInput').addEventListener('change', (e) => { if (e.target.files[0]) restoreBackup(e.target.files[0]); e.target.value = ''; });
   $('pickBtn').addEventListener('click', () => $('fileInput').click());
   $('fileInput').addEventListener('change', (e) => { importFiles(e.target.files); e.target.value = ''; });
   $('csvBtn').addEventListener('click', exportCsv);
@@ -909,14 +1023,16 @@ function init(data) {
     $('blurBtn').setAttribute('aria-pressed', String(hidden));
   });
   $('clearBtn').addEventListener('click', () => {
-    if (!Object.keys(teams).length) return;
-    if (!confirm('Išvalyti visas importuotas komandas?')) return;
+    const n = Object.keys(teams).length;
+    if (!n) return;
+    const edits = Object.values(teams).reduce((sum, t) => sum + editCount(t), 0);
+    const what = `${n} ${plural(n, 'komandą', 'komandas', 'komandų')}${edits ? ` ir ${edits} ${plural(edits, 'taisymą', 'taisymus', 'taisymų')}` : ''}`;
+    if (!confirm(`Išvalyti ${what}?`)) return;
+    const before = snapshot();
     teams = {};
-    save(TEAMS_KEY, teams);
-    renderTeams();
-    renderAdjust();
-    rebuildBoard();
+    refreshAll();
     $('report').hidden = true;
+    toast(`Išvalyta: ${what}`, () => restoreSnapshot(before));
   });
 
   renderTeams();
